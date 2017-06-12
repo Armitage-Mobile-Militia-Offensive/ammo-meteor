@@ -10,7 +10,7 @@ import Login from '../imports/ui/login'
 import Floatila from './components/floatila'
 import Schedule from './components/schedule'
 import NotFound from '../imports/ui/notFound'
-import EditProfile from '../imports/ui/editProfile'
+import EditProfile from '../imports/profile/editProfile'
 import {requireAuth} from './utils/AuthService'
 
 

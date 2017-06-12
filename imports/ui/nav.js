@@ -163,6 +163,9 @@ export class Nav extends Component {
                       <li className="nav-item">
                           <Link to="/fleet" className="nav-link" style={this.state.fleet} onMouseEnter={() => this.onMouseEnter("fleet")} onMouseLeave={() => this.onMouseLeave("fleet")}>Fleet</Link>
                       </li>
+                      <li className="nav-item">
+                          <Link to="/about" className="nav-link" style={this.state.about} onMouseEnter={() => this.onMouseEnter("about")} onMouseLeave={() => this.onMouseLeave("about")}>About</Link>
+                      </li>
                   </ul>
                   {renderProfileDropdown()}
               </div>
