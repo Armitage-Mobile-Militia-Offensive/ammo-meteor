@@ -1,18 +1,21 @@
 import React, {Component} from 'react';
 
+import Mission from './about/mission'
+import History from './about/history'
+import Rules from './about/rules'
+import Diplomacy from './about/diplomacy'
+
 const activeNavItem = {
     color: '#F59B45',
-    borderBottom: '4px solid #F59B45'
+    borderBottom: '4px solid black'
 }
 
 const hoveredItem = {
-    color: 'white',
     textDecoration: 'none',
     borderBottom: '4px solid #F59B45'
 }
 
 const navItem = {
-    color: 'white',
     textDecoration: 'none'
 }
 
@@ -55,56 +58,42 @@ class About extends Component {
   onMouseEnter = (link) => {
       switch (link) {
           case "Mission":
-              (this.state.mission === activeNavItem) ? null : this.setState({Mission: hoveredItem})
+              return (this.state.subPage === link) ? null : this.setState({mission: hoveredItem})
               break
           case "History":
-              (this.state.history === activeNavItem) ? null : this.setState({history: hoveredItem})
+              return (this.state.subPage === link) ? null : this.setState({history: hoveredItem})
               break
           case "Rules":
-              (this.state.rules === activeNavItem) ? null : this.setState({rules: hoveredItem})
+              return (this.state.subPage === link) ? null : this.setState({rules: hoveredItem})
               break
           case "Diplomacy":
-              (this.state.diplomacy === activeNavItem) ? null : this.setState({diplomacy: hoveredItem})
+              return (this.state.subPage === link) ? null : this.setState({diplomacy: hoveredItem})
               break
           default:
-              this.setState({Mission: navItem, rules: navItem, diplomacy: navItem, history: navItem})
+              return this.setState({mission: navItem, rules: navItem, diplomacy: navItem, history: navItem})
       }
   }
   onMouseLeave = (link) => {
       switch (link) {
           case "Mission":
-              (this.state.mission === activeNavItem) ? null : this.setState({Mission: navItem})
+              return (this.state.mission === activeNavItem) ? null : this.setState({mission: navItem})
               break
           case "History":
-              (this.state.history === activeNavItem) ? null : this.setState({scheduler: navItem})
+              return (this.state.history === activeNavItem) ? null : this.setState({history: navItem})
               break
           case "Rules":
-              (this.state.rules === activeNavItem) ? null : this.setState({rules: navItem})
+              return (this.state.rules === activeNavItem) ? null : this.setState({rules: navItem})
               break
           case "Diplomacy":
-              (this.state.diplomacy === activeNavItem) ? null : this.setState({diplomacy: navItem})
+              return (this.state.diplomacy === activeNavItem) ? null : this.setState({diplomacy: navItem})
               break
           default:
-              this.setState({Mission: navItem, rules: navItem, diplomacy: navItem, history: navItem});
+              return this.setState({mission: navItem, rules: navItem, diplomacy: navItem, history: navItem});
       }
   }
   handlePageTurn(link){
-    switch (link) {
-        case "Mission":
-            this.setState({subPage: 'Home'})
-            break
-        case "History":
-            this.setState({subPage: 'History'})
-            break
-        case "Rules":
-            this.setState({subPage: 'Rules'})
-            break
-        case "Diplomacy":
-            this.setState({subPage: 'Diplomacy'})
-            break
-        default:
-            this.setState({subPage: 'Home'});
-    }
+    this.setState({subPage: link})
+    this.navSwitching()
   }
   renderPage(){
     switch(this.state.subPage){
@@ -128,21 +117,17 @@ class About extends Component {
     return (
       <div className="container">
         <div className="display-1 text-center" style={{fontVariant: 'small-caps'}}>About <span style={{color: '#F59B45'}}>A.M.M.O.</span></div>
-        <ul className="nav nav-fill">
-          <li className="nav-item">
-            <div className="nav-link active" onClick={() => this.handlePageTurn('Mission')} onMouseEnter={() => this.onMouseEnter('Mission')} onMouseLeave={() => this.onMouseLeave('Mission')}>Mission</div>
+        <ul className="nav nav-fill container">
+          <li className="nav-item" style={this.state.mission} onClick={() => this.handlePageTurn('Mission')} onMouseEnter={() => this.onMouseEnter('Mission')} onMouseLeave={() => this.onMouseLeave('Mission')}>Mission
           </li>
-          <li className="nav-item">
-            <div className="nav-link" onClick={() => this.handlePageTurn('History')} onMouseEnter={() => this.onMouseEnter('History')} onMouseLeave={() => this.onMouseLeave('History')}>History</div>
+          <li className="nav-item" style={this.state.history} onClick={() => this.handlePageTurn('History')} onMouseEnter={() => this.onMouseEnter('History')} onMouseLeave={() => this.onMouseLeave('History')}>History
           </li>
-          <li className="nav-item">
-            <div className="nav-link" onClick={() => this.handlePageTurn('Rules')} onMouseEnter={() => this.onMouseEnter('Rules')} onMouseLeave={() => this.onMouseLeave('Rules')}>Rules</div>
+          <li className="nav-item" style={this.state.rules} onClick={() => this.handlePageTurn('Rules')} onMouseEnter={() => this.onMouseEnter('Rules')} onMouseLeave={() => this.onMouseLeave('Rules')}>Rules
           </li>
-          <li className="nav-item">
-            <div className="nav-link" onClick={() => this.handlePageTurn('Diplomacy')} onMouseEnter={() => this.onMouseEnter('Diplomacy')} onMouseLeave={() => this.onMouseLeave('Diplomacy')}>Diplomacy</div>
+          <li className="nav-item" style={this.state.diplomacy} onClick={() => this.handlePageTurn('Diplomacy')} onMouseEnter={() => this.onMouseEnter('Diplomacy')} onMouseLeave={() => this.onMouseLeave('Diplomacy')}>Diplomacy
           </li>
         </ul>
-        {this.handlePageTurn()}
+        {this.renderPage()}
       </div>
     )
   }
