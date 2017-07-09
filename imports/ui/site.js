@@ -1,19 +1,26 @@
 import React, { Component } from 'react'
-import Nav from '../imports/ui/nav'
+import Nav from './nav'
 import { PropTypes } from 'prop-types'
 import { browserHistory } from 'react-router'
 
-export class Site extends Component {
+export default class Site extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+    };
+  }
   render() {
     return (
       <div>
-        <Nav />
+        <Nav user={this.props.user}/>
         <div style={{paddingTop: `${browserHistory.getCurrentLocation().pathname === '/' ? '0px' : '53px' }`, fontFamily: 'Electrolize'}}>
-          {this.props.children}
+          {React.cloneElement(this.props.children, { user: this.props.user })}
         </div>
       </div>
     )
   }
 }
 
-export default Site
+Site.PropTypes = {
+  user: PropTypes.object
+}

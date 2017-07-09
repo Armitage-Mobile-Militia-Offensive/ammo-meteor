@@ -31,8 +31,6 @@ export class Nav extends Component {
       }
   }
 
-
-
   navSwitching = () => {
     switch(browserHistory.getCurrentLocation().pathname){
       case "/":
@@ -47,7 +45,16 @@ export class Nav extends Component {
       case "/fleet":
           return this.setState({home: navItem, floatila: navItem, fleet: activeNavItem, scheduler: navItem, about: navItem})
           break
-      case "/about":
+      case "/about/mission":
+          return this.setState({home: navItem, floatila: navItem, fleet: navItem, scheduler: navItem, about: activeNavItem})
+          break
+      case "/about/rules":
+          return this.setState({home: navItem, floatila: navItem, fleet: navItem, scheduler: navItem, about: activeNavItem})
+          break
+      case "/about/history":
+          return this.setState({home: navItem, floatila: navItem, fleet: navItem, scheduler: navItem, about: activeNavItem})
+          break
+      case "/about/diplomacy":
           return this.setState({home: navItem, floatila: navItem, fleet: navItem, scheduler: navItem, about: activeNavItem})
           break
       default:
@@ -76,7 +83,7 @@ export class Nav extends Component {
               (browserHistory.getCurrentLocation().pathname === '/fleet') ? null : this.setState({fleet: hoveredItem})
               break
           case "about":
-              (browserHistory.getCurrentLocation().pathname === '/about') ? null : this.setState({about: hoveredItem})
+              (browserHistory.getCurrentLocation().pathname.includes('/about')) ? null : this.setState({about: hoveredItem})
               break
           default:
               this.setState({home: navItem, floatila: navItem, fleet: navItem, scheduler: navItem, about: navItem})
@@ -97,7 +104,7 @@ export class Nav extends Component {
               (browserHistory.getCurrentLocation().pathname === '/fleet') ? null : this.setState({fleet: navItem})
               break
           case "about":
-              (browserHistory.getCurrentLocation().pathname === '/about') ? null : this.setState({about: navItem})
+              (browserHistory.getCurrentLocation().pathname.includes('/about')) ? null : this.setState({about: navItem})
               break
           default:
               this.setState({home: navItem, floatila: navItem, fleet: navItem, scheduler: navItem, about: navItem});
@@ -105,27 +112,25 @@ export class Nav extends Component {
   }
 
   render() {
-
       let renderProfileDropdown = () => {
-          let name = 'Guest'
-          if (Meteor.userId()) {
-              name = 'Temp'
-          }
-
           if (Meteor.userId()) {
               return (
                   <span className="nav-item nav-right dropdown" style={{ color: 'white' }} >
-                      <span className="nav-link dropdown-toggle" id="navbarDropdownMenuLinkMember" data-toggle="dropdown" style={{ navItem }}>Welcome {name}</span>
+                      <span className="nav-link dropdown-toggle" id="navbarDropdownMenuLinkMember" data-toggle="dropdown" style={{ navItem }}>{this.props.user ? this.props.user.username : 'Loading...'}</span>
                       <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLinkMember">
                           <Link to="/profile/edit" className="dropdown-item">Edit Profile</Link>
-                          <span className="dropdown-item" onClick={() => Accounts.logout((err) => {console.log('Logout Error: ', err)})}>Logout</span>
+                          <span className="dropdown-item" onClick={() => Accounts.logout((err) => {
+                            if(err){
+                              console.log('Logout Error: ', err)
+                            }
+                          })}>Logout</span>
                       </div>
                   </span>
               );
           } else {
               return (
                   <span className="nav-item nav-right dropdown" style={{ color: 'white' }} >
-                      <span className="nav-link dropdown-toggle nav-text" id="navbarDropdownMenuLinkGuest" data-toggle="dropdown" style={{navItem}}>Welcome {name}</span>
+                      <span className="nav-link dropdown-toggle nav-text" id="navbarDropdownMenuLinkGuest" data-toggle="dropdown" style={{navItem}}>Welcome Guest</span>
                       <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLinkGuest">
                         <Link to="/login" className="dropdown-item">Login / Sign-up page</Link>
                       </div>
@@ -164,7 +169,7 @@ export class Nav extends Component {
                           <Link to="/fleet" className="nav-link" style={this.state.fleet} onMouseEnter={() => this.onMouseEnter("fleet")} onMouseLeave={() => this.onMouseLeave("fleet")}>Fleet</Link>
                       </li>
                       <li className="nav-item">
-                          <Link to="/about" className="nav-link" style={this.state.about} onMouseEnter={() => this.onMouseEnter("about")} onMouseLeave={() => this.onMouseLeave("about")}>About</Link>
+                          <Link to="/about/mission" className="nav-link" style={this.state.about} onMouseEnter={() => this.onMouseEnter("about")} onMouseLeave={() => this.onMouseLeave("about")}>About</Link>
                       </li>
                   </ul>
                   {renderProfileDropdown()}
