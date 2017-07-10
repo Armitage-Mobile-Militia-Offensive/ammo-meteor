@@ -5,6 +5,8 @@ import md5 from 'js-md5'
 import { Meteor } from 'meteor/meteor'
 import { Accounts } from 'meteor/accounts-base'
 
+const tradeskills = ['Pilot - Fighter', 'Pilot', 'Engineer', 'Hauler', 'Explorer', 'Mining', 'Mercenary', 'Combat', 'Mechanic']
+
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -13,10 +15,18 @@ class Signup extends Component {
       branch: '',
       passwordPrompt: false
     }
+    this.handleChange = this.handleChange.bind(this)
   }
   componentWillMount(){
     if(Meteor.userId()) browserHistory.replace('/login')
   }
+mapSkills() {
+  return tradeskills.map((tradeskill) => {
+    return (
+      <option value={tradeskill} key={tradeskill}>{tradeskill}</option>
+    )
+  })
+}
   onSubmit(e) {
     e.preventDefault()
     if(this.refs.password.value !== this.refs.confirmPassword.value){
@@ -61,6 +71,9 @@ class Signup extends Component {
   handleBranchClick = (value) => {
     this.setState({branch: value})
   }
+  handleChange(event){
+    event.target.value.length > 8 ? this.setState({passwordPrompt: false}) : this.setState({passwordPrompt: true})
+  }
   render() {
       return (
         <div className="container-fluid">
@@ -74,27 +87,27 @@ class Signup extends Component {
                   <h2 className="card-title">Account Info</h2>
                   <h6 className="card-subtitle mb-2 text-muted">Username, Password, and Email</h6>
                   <div className="input-group">
-                    <div className="input-group-addon text-right" style={{width: '170px'}}>Username:</div>
+                    <div className="input-group-addon text-right" style={{width: '160px'}}>Username:</div>
                     <input type="text" ref="username" className="form-control" placeholder="Please use your in-game handle" />
                   </div>
                   <br/>
                   <div className="input-group">
-                    <div className="input-group-addon text-right" style={{width: '170px'}} onChange={() => {console.log(this.refs)}}>Password:</div>
-                    <input type="password" ref="password" className="form-control"/>
+                    <div className="input-group-addon text-right" style={{width: '160px'}}>Password:</div>
+                    <input type="password" ref="password" className="form-control" onChange={this.handleChange.bind(this)}/>
                   </div>
                   {this.state.passwordPrompt ? <p className="card-text-muted text-right">Must be over 8 characters</p> : <br/>}
                   <div className="input-group">
-                    <div className="input-group-addon text-right" style={{width: '170px'}}>Confirm Password:</div>
+                    <div className="input-group-addon text-right" style={{width: '160px'}}>Confirm Password:</div>
                     <input type="password" ref="confirmPassword" className="form-control" value=""/>
                   </div>
-                  {this.state.passwordPrompt ? <p className="card-text-muted text-right">Must be over 8 characters</p> : <br/>}
+                  <br/>
                   <div className="input-group">
-                    <div className="input-group-addon text-right" style={{width: '170px'}}>Email:</div>
+                    <div className="input-group-addon text-right" style={{width: '160px'}}>Email:</div>
                     <input type="text" ref="email" className="form-control" placeholder="example@example.com" />
                   </div>
                   <br/>
                   <div className="input-group">
-                    <div className="input-group-addon text-right" style={{width: '170px'}}>Confirm Email:</div>
+                    <div className="input-group-addon text-right" style={{width: '160px'}}>Confirm Email:</div>
                     <input type="text" ref="confirmEmail" className="form-control" placeholder="example@example.com"/>
                   </div>
                   <br/>
@@ -123,6 +136,17 @@ class Signup extends Component {
                     <label className={(this.state.branch === 'LaS') ? 'btn btn-primary active' : 'btn btn-primary'}>
                       <input type="radio" id="lasButton" autoComplete="off" onClick={() => this.setState({ branch: 'LaS'})} />Logistics and Science
                     </label>
+                  </div>
+                  <br/>
+                  <br/>
+                  <div className="input-group">
+                    <div className="input-group-addon text-right" style={{width: '160px'}}>Primary Skill</div>
+                    <select className="custom-select">{this.mapSkills()}</select>
+                  </div>
+                  <br/>
+                  <div className="input-group">
+                    <div className="input-group-addon text-right" style={{width: '160px'}}>Secondary Skill</div>
+                    <select className="custom-select">{this.mapSkills()}</select>
                   </div>
                 </div>
               </div>
