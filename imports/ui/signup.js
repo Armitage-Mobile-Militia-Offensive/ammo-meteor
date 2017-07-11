@@ -12,7 +12,7 @@ class Signup extends Component {
     super(props);
     this.state = {
       error: '',
-      branch: '',
+      branch: 'Fleet',
       passwordPrompt: false
     }
     this.handleChange = this.handleChange.bind(this)
@@ -32,6 +32,9 @@ mapSkills() {
     if(this.refs.password.value !== this.refs.confirmPassword.value){
       return this.setState({error: 'Passwords do not match'})
     }
+    if(this.refs.password.value.length <= 8){
+      return this.setState({error: 'Password must be over 8 characters'})
+    }
     if(this.refs.email.value !== this.refs.confirmEmail.value) {
       return this.setState({error: 'Emails do not match'})
     }
@@ -39,40 +42,45 @@ mapSkills() {
       return this.setState({error: 'Passwords & Emails do not match'})
     }
     if((this.refs.email.value === this.refs.confirmEmail.value) && (this.refs.password.value === this.refs.confirmPassword.value)) {
-      alert(
-        "Username: " + this.refs.username.value + '\n' +
-        "Password: " + this.refs.password.value + '\n' +
-        "Email: " + this.refs.email.value
-      )
+      let email = this.refs.email.value.toLowerCase().trim()
+      let password = this.refs.password.value.trim()
+      let username = this.refs.username.value.trim()
+      let name = this.refs.fullName.value.trim()
+      let profile = {
+        name: name,
+        branch: this.state.branch,
+        primarySkill: this.refs.primarySkill.value,
+        secondarySkill: this.refs.secondarySkill.value
+      }
+      Accounts.createUser({
+        username,
+        email,
+        password,
+        profile
+      }, (err) => {
+        if(err){
+          this.setState({error: err})
+        }
+      })
     }
-    // let email = this.refs.email.value.toLowerCase().trim()
-    // let password = this.refs.password.value.trim()
-    // let confirmpassword = this.refs.confirmpassword.value.trim()
-    // let username = this.refs.username.value.trim()
-    // let name = this.refs.fullName.value.trim()
-    // let profile = {
-    //   name: name,
-    //   branch: this.state.branch
-    // }
-    // if (password === confirmpassword) {
-    //   Accounts.createUser({
-    //     username,
-    //     email,
-    //     password,
-    //     profile
-    //   }, (err) => {
-    //     console.log('Sign-Up Error:', err)
-    //   })
-    //
-    // } else {
-    //   this.setState({error: 'Password missmatch'})
-    // }
+
   }
   handleBranchClick = (value) => {
     this.setState({branch: value})
   }
   handleChange(event){
     event.target.value.length > 8 ? this.setState({passwordPrompt: false}) : this.setState({passwordPrompt: true})
+  }
+  renderAlertCard(){
+    return (
+      <div className="card card-outline-danger push-1 col-4">
+        <div className="card-block">
+          <h2 className="card-title">Submission Error</h2>
+          <h6 className="card-subtitle mb-2 text-muted">Something occured when submitting yuour information</h6>
+          <p className="card-text">{this.state.error}</p>
+        </div>
+      </div>
+    )
   }
   render() {
       return (
@@ -98,7 +106,7 @@ mapSkills() {
                   {this.state.passwordPrompt ? <p className="card-text-muted text-right">Must be over 8 characters</p> : <br/>}
                   <div className="input-group">
                     <div className="input-group-addon text-right" style={{width: '160px'}}>Confirm Password:</div>
-                    <input type="password" ref="confirmPassword" className="form-control" value=""/>
+                    <input type="password" ref="confirmPassword" className="form-control"/>
                   </div>
                   <br/>
                   <div className="input-group">
@@ -112,8 +120,8 @@ mapSkills() {
                   </div>
                   <br/>
                 </div>
-                {this.state.error ? <div className="alet alert-danger">{this.state.error}</div> : undefined}
               </div>
+              {this.state.error ? this.renderAlertCard() : undefined}
             </div>
             <br/>
             <div className="row">
@@ -124,29 +132,29 @@ mapSkills() {
                   <br/>
                   <h4>Branch</h4>
                   <div className="btn-group" data-toggle="buttons">
-                    <label className={(this.state.branch === 'Fleet') ? 'btn btn-primary active' : 'btn btn-primary'}>
-                      <input type="radio" id="fleetButton" autoComplete="off" onClick={() => this.setState({ branch: 'Fleet'})} />Fleet
+                    <label className={(this.state.branch === 'Fleet') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('Fleet')} >
+                      <input type="radio" id="fleetButton" autoComplete="off" selected/>Fleet
                     </label>
-                    <label className={(this.state.branch === 'Marines') ? 'btn btn-primary active' : 'btn btn-primary'}>
-                      <input type="radio" id="marinesButton" autoComplete="off" onClick={() => this.setState({ branch: 'Marines'})} />Marines
+                    <label className={(this.state.branch === 'Marines') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('Marines')} >
+                      <input type="radio" id="marinesButton" autoComplete="off" />Marines
                     </label>
-                    <label className={(this.state.branch === 'PaIR') ? 'btn btn-primary active' : 'btn btn-primary'}>
-                      <input type="radio" id="pairButton" autoComplete="off" onClick={() => this.setState({ branch: 'PaIR'})} />Public and Internal Relations
+                    <label className={(this.state.branch === 'PaIR') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('PaIR')} >
+                      <input type="radio" id="pairButton" autoComplete="off" />Public and Internal Relations
                     </label>
-                    <label className={(this.state.branch === 'LaS') ? 'btn btn-primary active' : 'btn btn-primary'}>
-                      <input type="radio" id="lasButton" autoComplete="off" onClick={() => this.setState({ branch: 'LaS'})} />Logistics and Science
+                    <label className={(this.state.branch === 'LaS') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('LaS')} >
+                      <input type="radio" id="lasButton" autoComplete="off" />Logistics and Science
                     </label>
                   </div>
                   <br/>
                   <br/>
                   <div className="input-group">
                     <div className="input-group-addon text-right" style={{width: '160px'}}>Primary Skill</div>
-                    <select className="custom-select">{this.mapSkills()}</select>
+                    <select className="custom-select" ref="primarySkill">{this.mapSkills()}</select>
                   </div>
                   <br/>
                   <div className="input-group">
                     <div className="input-group-addon text-right" style={{width: '160px'}}>Secondary Skill</div>
-                    <select className="custom-select">{this.mapSkills()}</select>
+                    <select className="custom-select" ref="secondarySkill">{this.mapSkills()}</select>
                   </div>
                 </div>
               </div>
