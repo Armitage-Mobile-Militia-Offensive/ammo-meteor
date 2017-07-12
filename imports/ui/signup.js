@@ -76,7 +76,7 @@ mapSkills() {
       <div className="card card-outline-danger push-1 col-4">
         <div className="card-block">
           <h2 className="card-title">Submission Error</h2>
-          <h6 className="card-subtitle mb-2 text-muted">Something occured when submitting yuour information</h6>
+          <h6 className="card-subtitle mb-2 text-muted">Something occured when submitting your information</h6>
           <p className="card-text">{this.state.error}</p>
         </div>
       </div>
@@ -130,6 +130,13 @@ mapSkills() {
                   <h4 className="display-4">Citizen Info</h4>
                   <h6 className="card-subtitle mb-2 text-muted">Branch, Primary Trade, and Secondary Trade</h6>
                   <br/>
+                  <h4>Name</h4>
+                  <h6 className="text-muted">In-game name of character (<b>Not</b> your handle)</h6>
+                  <div className="input-group row container">
+                    <div className="input-group-addon text-right" style={{width: '160px'}}>Full Name:</div>
+                    <input type="text" ref="fullName" className="form-control col-6" placeholder="Last Name, First Name" />
+                  </div>
+                  <br/>
                   <h4>Branch</h4>
                   <div className="btn-group" data-toggle="buttons">
                     <label className={(this.state.branch === 'Fleet') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('Fleet')} >
@@ -147,6 +154,7 @@ mapSkills() {
                   </div>
                   <br/>
                   <br/>
+                  <h4>Skills</h4>
                   <div className="input-group">
                     <div className="input-group-addon text-right" style={{width: '160px'}}>Primary Skill</div>
                     <select className="custom-select" ref="primarySkill">{this.mapSkills()}</select>

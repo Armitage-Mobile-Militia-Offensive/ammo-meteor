@@ -1,55 +1,103 @@
-import React, { Component } from 'react'
-import { Meteor } from 'meteor/meteor'
+import React, {Component} from 'react'
+import {Meteor} from 'meteor/meteor'
 import md5 from 'js-md5'
 
+const tradeskills = [
+  'Pilot - Fighter',
+  'Pilot',
+  'Engineer',
+  'Hauler',
+  'Explorer',
+  'Mining',
+  'Mercenary',
+  'Combat',
+  'Mechanic'
+]
+
 class EditProfile extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
+    this.state = {
+      branch: ''
+    }
   }
-  mapEmails () {
-    if(this.props.user) {
+  mapSkills() {
+    return tradeskills.map((tradeskill) => {
+      return (
+        <option value={tradeskill} key={tradeskill}>{tradeskill}</option>
+      )
+    })
+  }
+  handleBranchClick = (value) => {
+    this.setState({branch: value})
+  }
+  mapEmails() {
+    if (this.props.user) {
       return this.props.user.emails.map((email) => {
-          return(
-            <div className="row container-fluid" key={`${Meteor.userId() + '#' + email.address}`}>
-              <input type="text" className="form-control col-4" placeholder={email.address} />
-              <button type="button" className="btn btn-danger col-1" style={{marginRight: '10px', marginLeft: '10px'}}><span className="fa fa-trash" aria-hidden="true"></span></button>
-              <button type="button" className="btn btn-info col-1" style={{marginRight: '10px', marginLeft: '10px'}} dataToggle="tooltip" dataPlacement="Top" title="Resend Verification"><span className="fa fa-refresh" aria-hidden="true"></span></button>
-            </div>
-          ) })
+        return (
+          <div className="row container-fluid" key={`${Meteor.userId() + '#' + email.address}`}>
+            <input type="text" className="form-control col-4" placeholder={email.address}/>
+            <button type="button" className="btn btn-danger col-1" style={{
+              marginRight: '10px',
+              marginLeft: '10px'
+            }}>
+              <span className="fa fa-trash" aria-hidden="true"></span>
+            </button>
+            <button type="button" className="btn btn-info col-1" style={{
+              marginRight: '10px',
+              marginLeft: '10px'
+            }} dataToggle="tooltip" dataPlacement="Top" title="Resend Verification">
+              <span className="fa fa-refresh" aria-hidden="true"></span>
+            </button>
+          </div>
+        )
+      })
     } else {
       return ''
     }
   }
-  renderBranch() {
-    if(this.props.user) {
-      return (<div className="btn-group" data-toggle="buttons">
-        <label className={(this.props.user.profile.branch === 'Fleet') ? 'btn btn-primary active' : 'btn btn-primary'}>
-          <input type="radio" id="fleetButton" autoComplete="off" onClick={() => this.branchChange('Fleet')}/>Fleet
+  branchChange(newBranch) {
+    Meteor.users.update(Meteor.userId(), {
+      $set: {
+        "profile.someNewField": newData
+      }
+    })
+  }S
+  // componentDidMount() {
+  //   $('[data-toggle="tooltip"]').tooltip()
+  // }
+  //
+  // componentDidUpdate() {
+  //   $('[data-toggle="tooltip"]').tooltip()
+  // }
+  renderBranch(){
+    return(
+      <div className="btn-group" data-toggle="buttons">
+        <label className={(this.props.user.profile.branch === 'Fleet') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('Fleet')}>
+          <input type="radio" id="fleetButton" autoComplete="off" selected/>Fleet
         </label>
-        <label className={(this.props.user.profile.branch === 'Marines') ? 'btn btn-primary active' : 'btn btn-primary'}>
-          <input type="radio" id="marinesButton" autoComplete="off" onClick={() => this.branchChange('Marines')}/>Marines
+        <label className={(this.props.user.profile.branch === 'Marines') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('Marines')}>
+          <input type="radio" id="marinesButton" autoComplete="off"/>Marines
         </label>
-        <label className={(this.props.user.profile.branch === 'PaIR') ? 'btn btn-primary active' : 'btn btn-primary'}>
-          <input type="radio" id="pairButton" autoComplete="off" onClick={() => this.branchChange('PaIR')}/>Public and Internal Relations
+        <label className={(this.props.user.profile.branch === 'PaIR')
+          ? 'btn btn-primary active'
+          : 'btn btn-primary'} onClick={() => this.handleBranchClick('PaIR')}>
+          <input type="radio" id="pairButton" autoComplete="off"/>Public and Internal Relations
         </label>
-        <label className={(this.props.user.profile.branch === 'LaS') ? 'btn btn-primary active' : 'btn btn-primary'}>
-          <input type="radio" id="lasButton" autoComplete="off" onClick={() => this.branchChange('LaS')}/>Logistics and Science
+        <label className={(this.props.user.profile.branch === 'LaS')
+          ? 'btn btn-primary active'
+          : 'btn btn-primary'} onClick={() => this.handleBranchClick('LaS')}>
+          <input type="radio" id="lasButton" autoComplete="off"/>Logistics and Science
         </label>
       </div>
-      )
-    } else {
-      return(
-        <p>Loading...</p>
-      )
-    }
+    )
   }
-  branchChange(newBranch) {
-    Meteor.users.update(this.props.user._id, {$set: {"profile.someNewField": newData}})
-  }
-  render(){
-    console.log(this.props.user)
+  render() {
     return (
-      <div className="container-fluid" style={{paddingLeft: '50px', paddingRight: '50px'}}>
+      <div className="container-fluid" style={{
+        paddingLeft: '50px',
+        paddingRight: '50px'
+      }}>
         <div className="row">
           <div className="card card-outline-primary col-7">
             <div className="card-block">
@@ -57,22 +105,44 @@ class EditProfile extends Component {
               <h6 className="card-subtitle mb-2 text-muted">Username, Password, and Email</h6>
               <br/>
               <div className="input-group">
-                <div className="input-group-addon text-right" style={{width: '110px'}}>Username:</div>
-                <input type="text" className="form-control" placeholder={this.props.user ? this.props.user.username : 'Loading...'} />
+                <div className="input-group-addon text-right" style={{
+                  width: '110px'
+                }}>Username:</div>
+                <input type="text" className="form-control" placeholder={this.props.user
+                  ? this.props.user.username
+                  : 'Loading...'}/>
               </div>
               <br/>
               <div className="input-group">
-                <div className="input-group-addon text-right" style={{width: '110px'}}>Password:</div>
-                <input type="text" className="form-control" />
+                <div className="input-group-addon text-right" style={{
+                  width: '110px'
+                }}>Password:</div>
+                <input type="text" className="form-control"/>
               </div>
               <br/>
               <div className="input-group">
-                <div className="input-group-addon text-right" style={{width: '110px'}}>Email:</div>
-                <input type="text" className="form-control" placeholder={this.props.user ? this.props.user.emails[0].address : 'Loading...'} />
+                <div className="input-group-addon text-right" style={{
+                  width: '110px'
+                }}>Email:</div>
+                <input type="text" className="form-control" placeholder={this.props.user
+                  ? this.props.user.emails[0].address
+                  : 'Loading...'}/>
+                <button className="btn btn-info" style={{
+                  width: '50px'
+                }} data-toggle="tooltip" data-placement="top" title="Update email">
+                  <span className="fa fa-refresh"></span>
+                </button>
               </div>
             </div>
           </div>
-          <img className="float-right img-thumbnail push-1 col-3 img-fluid rounded" src={this.props.user ? `https://www.gravatar.com/avatar/${md5(this.props.user.emails[0].address)}?s=200` : ''}  style={{padding: '60px'}}/>
+          <img className="float-right img-thumbnail push-1 col-3 img-fluid rounded" style={{
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }} src={this.props.user
+            ? `https://www.gravatar.com/avatar/${md5(this.props.user.emails[0].address)}?s=200`
+            : ''} style={{
+            padding: '60px'
+          }}/>
         </div>
         <br/>
         <div className="row">
@@ -81,21 +151,39 @@ class EditProfile extends Component {
               <h4 className="display-4">Citizen Info</h4>
               <h6 className="card-subtitle mb-2 text-muted">Branch, Primary Trade, and Secondary Trade</h6>
               <br/>
+              <h4>Name</h4>
+              <h6 className="text-muted">In-game name of character (<b>Not</b>
+                your handle)</h6>
+              <div className="input-group row container">
+                <div className="input-group-addon text-right" style={{
+                  width: '160px'
+                }}>Full Name:</div>
+                <input type="text" ref="fullName" className="form-control col-6" placeholder="Last Name, First Name"/>
+              </div>
+              <br/>
               <h4>Branch</h4>
-              {this.renderBranch()}
+              {this.props.user ? this.renderBranch.bind(this) : <p>Loading...</p>}
+              <br/>
+              <br/>
+              <h4>Skills</h4>
+              <div className="input-group">
+                <div className="input-group-addon text-right" style={{
+                  width: '160px'
+                }}>Primary Skill</div>
+                <select className="custom-select" ref="primarySkill">{this.mapSkills()}</select>
+              </div>
+              <br/>
+              <div className="input-group">
+                <div className="input-group-addon text-right" style={{
+                  width: '160px'
+                }}>Secondary Skill</div>
+                <select className="custom-select" ref="secondarySkill">{this.mapSkills()}</select>
+              </div>
             </div>
           </div>
         </div>
-        <div className="form-group h5">
-          <label className="">Primary Skill/Trade: </label>
-          <input type="text" className="form-control col-4" placeholder={'placeholder'} />
-        </div>
-        <div className="form-group h6">
-          <label className="">Secondary Skill/Trade: </label>
-          <input type="text" className="form-control col-4" placeholder={'placeholder'} />
-        </div>
-          <div className="row"></div>
-          <div className="row"></div>
+        <div className="row"></div>
+        <div className="row"></div>
       </div>
     )
   }
