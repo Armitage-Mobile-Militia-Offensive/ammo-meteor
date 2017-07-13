@@ -63,33 +63,19 @@ class EditProfile extends Component {
       }
     })
   }
-  componentDidMount() {
-    $('[data-toggle="tooltip"]').tooltip()
-  }
-
-  componentDidUpdate() {
-    $('[data-toggle="tooltip"]').tooltip()
-  }
+  // componentDidMount() {
+  //   $('[data-toggle="tooltip"]').tooltip()
+  // }
+  //
+  // componentDidUpdate() {
+  //   $('[data-toggle="tooltip"]').tooltip()
+  // }
   renderBranch(){
-    return(
-      <div className="btn-group" data-toggle="buttons">
-        <label className={(this.props.user.profile.branch === 'Fleet') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('Fleet')}>
-          <input type="radio" id="fleetButton" autoComplete="off"/>Fleet
-        </label>
-        <label className={(this.props.user.profile.branch === 'Marines') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('Marines')}>
-          <input type="radio" id="marinesButton" autoComplete="off"/>Marines
-        </label>
-        <label className={(this.props.user.profile.branch === 'PaIR') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('PaIR')}>
-          <input type="radio" id="pairButton" autoComplete="off"/>Public and Internal Relations
-        </label>
-        <label className={(this.props.user.profile.branch === 'LaS') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('LaS')}>
-          <input type="radio" id="lasButton" autoComplete="off"/>Logistics and Science
-        </label>
-      </div>
-    )
-  }
-  handleBranchClick(){
 
+  }
+  handleBranchClick(branch){
+    console.log(branch)
+    console.log(this.props.user)
   }
   render() {
     return (
@@ -147,8 +133,7 @@ class EditProfile extends Component {
               <h6 className="card-subtitle mb-2 text-muted">Branch, Primary Trade, and Secondary Trade</h6>
               <br/>
               <h4>Name</h4>
-              <h6 className="text-muted">In-game name of character (<b>Not</b>
-                your handle)</h6>
+              <h6 className="text-muted">In-game name of character (<b>Not</b> your handle)</h6>
               <div className="input-group row container">
                 <div className="input-group-addon text-right" style={{
                   width: '160px'
@@ -157,7 +142,20 @@ class EditProfile extends Component {
               </div>
               <br/>
               <h4>Branch</h4>
-              {this.props.user ? this.renderBranch() : <p>Loading...</p>}
+              <div className="btn-group" data-toggle="buttons">
+                <label className={((this.props.user ? this.props.user.profile.branch : '') === 'Fleet') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('Fleet')}>
+                  <input type="radio" id="fleetButton" autoComplete="off" onClick={() => this.handleBranchClick('Fleet')}/>Fleet
+                </label>
+                <label className={((this.props.user ? this.props.user.profile.branch : '') === 'Marines') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('Marines')}>
+                  <input type="radio" id="marinesButton" autoComplete="off" onClick={() => this.handleBranchClick('Marines')}/>Marines
+                </label>
+                <label className={((this.props.user ? this.props.user.profile.branch : '') === 'PaIR') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('PaIR')}>
+                  <input type="radio" id="pairButton" autoComplete="off" />Public and Internal Relations
+                </label>
+                <label className={((this.props.user ? this.props.user.profile.branch : '') === 'LaS') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('LaS')}>
+                  <input type="radio" id="lasButton" autoComplete="off" />Logistics and Science
+                </label>
+              </div>
               <br/>
               <br/>
               <h4>Skills</h4>
