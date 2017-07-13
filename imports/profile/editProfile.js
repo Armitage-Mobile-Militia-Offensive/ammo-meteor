@@ -62,35 +62,34 @@ class EditProfile extends Component {
         "profile.someNewField": newData
       }
     })
-  }S
-  // componentDidMount() {
-  //   $('[data-toggle="tooltip"]').tooltip()
-  // }
-  //
-  // componentDidUpdate() {
-  //   $('[data-toggle="tooltip"]').tooltip()
-  // }
+  }
+  componentDidMount() {
+    $('[data-toggle="tooltip"]').tooltip()
+  }
+
+  componentDidUpdate() {
+    $('[data-toggle="tooltip"]').tooltip()
+  }
   renderBranch(){
     return(
       <div className="btn-group" data-toggle="buttons">
         <label className={(this.props.user.profile.branch === 'Fleet') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('Fleet')}>
-          <input type="radio" id="fleetButton" autoComplete="off" selected/>Fleet
+          <input type="radio" id="fleetButton" autoComplete="off"/>Fleet
         </label>
         <label className={(this.props.user.profile.branch === 'Marines') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('Marines')}>
           <input type="radio" id="marinesButton" autoComplete="off"/>Marines
         </label>
-        <label className={(this.props.user.profile.branch === 'PaIR')
-          ? 'btn btn-primary active'
-          : 'btn btn-primary'} onClick={() => this.handleBranchClick('PaIR')}>
+        <label className={(this.props.user.profile.branch === 'PaIR') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('PaIR')}>
           <input type="radio" id="pairButton" autoComplete="off"/>Public and Internal Relations
         </label>
-        <label className={(this.props.user.profile.branch === 'LaS')
-          ? 'btn btn-primary active'
-          : 'btn btn-primary'} onClick={() => this.handleBranchClick('LaS')}>
+        <label className={(this.props.user.profile.branch === 'LaS') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('LaS')}>
           <input type="radio" id="lasButton" autoComplete="off"/>Logistics and Science
         </label>
       </div>
     )
+  }
+  handleBranchClick(){
+
   }
   render() {
     return (
@@ -124,12 +123,8 @@ class EditProfile extends Component {
                 <div className="input-group-addon text-right" style={{
                   width: '110px'
                 }}>Email:</div>
-                <input type="text" className="form-control" placeholder={this.props.user
-                  ? this.props.user.emails[0].address
-                  : 'Loading...'}/>
-                <button className="btn btn-info" style={{
-                  width: '50px'
-                }} data-toggle="tooltip" data-placement="top" title="Update email">
+                <input type="text" className="form-control" placeholder={this.props.user ? this.props.user.emails[0].address : 'Loading...'}/>
+                <button className="btn btn-info" style={{ width: '50px', marginLeft: '10px' }} data-toggle="tooltip" data-placement="top" title="Update email">
                   <span className="fa fa-refresh"></span>
                 </button>
               </div>
@@ -158,11 +153,11 @@ class EditProfile extends Component {
                 <div className="input-group-addon text-right" style={{
                   width: '160px'
                 }}>Full Name:</div>
-                <input type="text" ref="fullName" className="form-control col-6" placeholder="Last Name, First Name"/>
+                <input type="text" ref="fullName" className="form-control col-6" placeholder={this.props.user ? this.props.user.profile.name : 'Loading...'}/>
               </div>
               <br/>
               <h4>Branch</h4>
-              {this.props.user ? this.renderBranch.bind(this) : <p>Loading...</p>}
+              {this.props.user ? this.renderBranch() : <p>Loading...</p>}
               <br/>
               <br/>
               <h4>Skills</h4>
@@ -171,6 +166,9 @@ class EditProfile extends Component {
                   width: '160px'
                 }}>Primary Skill</div>
                 <select className="custom-select" ref="primarySkill">{this.mapSkills()}</select>
+                <button className="btn btn-info" style={{ width: '50px', marginLeft: '10px' }} data-toggle="tooltip" data-placement="top" title="Update Primary Skill">
+                  <span className="fa fa-refresh"></span>
+                </button>
               </div>
               <br/>
               <div className="input-group">
@@ -178,6 +176,9 @@ class EditProfile extends Component {
                   width: '160px'
                 }}>Secondary Skill</div>
                 <select className="custom-select" ref="secondarySkill">{this.mapSkills()}</select>
+                <button className="btn btn-info" style={{ width: '50px', marginLeft: '10px' }} data-toggle="tooltip" data-placement="top" title="Update Secondary Skill">
+                  <span className="fa fa-refresh"></span>
+                </button>
               </div>
             </div>
           </div>
