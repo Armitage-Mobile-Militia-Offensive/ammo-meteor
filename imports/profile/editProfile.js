@@ -71,13 +71,30 @@ class EditProfile extends Component {
   //   $('[data-toggle="tooltip"]').tooltip()
   // }
   renderBranch(){
-
+    return(
+      <div>
+      <select className="custom-select" ref="branchSelect" defaultValue={this.props.user.profile.branch}>
+        <option value="Fleet" >Fleet</option>
+        <option value="Marines" >Marines</option>
+        <option value="LaS" >Logistics and Science</option>
+        <option value="PaIR" >Public and Internal Relations</option>
+      </select>
+        <button className="btn btn-info" style={{ width: '50px', marginLeft: '10px' }} data-toggle="tooltip" data-placement="top" title="Update Branch" onClick={() => this.handleBranchUpdate.bind(this)}>
+          <span className="fa fa-refresh"></span>
+        </button>
+      </div>
+    )
   }
-  handleBranchClick(branch){
-    console.log(branch)
-    console.log(this.props.user)
+  handleBranchUpdate(e){
+    e.preventDefault()
+    //Meteor.users.update(Meteor.userId(), {$set: {"profile.branch": this.refs.branchSelect.value}})
+    console.log('Branch update fired', this.props.user.profile)
+  }
+  componentWillReceiveProps(){
+    return this.props.user ? this.setState({branch: this.props.user.profile.branch}) : undefined
   }
   render() {
+
     return (
       <div className="container-fluid" style={{
         paddingLeft: '50px',
@@ -116,14 +133,7 @@ class EditProfile extends Component {
               </div>
             </div>
           </div>
-          <img className="float-right img-thumbnail push-1 col-3 img-fluid rounded" style={{
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }} src={this.props.user
-            ? `https://www.gravatar.com/avatar/${md5(this.props.user.emails[0].address)}?s=200`
-            : ''} style={{
-            padding: '60px'
-          }}/>
+          <img className="float-right img-thumbnail push-1 col-3 img-fluid rounded" style={{ backgroundSize: 'cover',   backgroundPosition: 'center' }} src={this.props.user ? `https://www.gravatar.com/avatar/${md5(this.props.user.emails[0].address)}?s=200` : ''} style={{ padding: '60px' }}/>
         </div>
         <br/>
         <div className="row">
@@ -142,20 +152,7 @@ class EditProfile extends Component {
               </div>
               <br/>
               <h4>Branch</h4>
-              <div className="btn-group" data-toggle="buttons">
-                <label className={((this.props.user ? this.props.user.profile.branch : '') === 'Fleet') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('Fleet')}>
-                  <input type="radio" id="fleetButton" autoComplete="off" onClick={() => this.handleBranchClick('Fleet')}/>Fleet
-                </label>
-                <label className={((this.props.user ? this.props.user.profile.branch : '') === 'Marines') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('Marines')}>
-                  <input type="radio" id="marinesButton" autoComplete="off" onClick={() => this.handleBranchClick('Marines')}/>Marines
-                </label>
-                <label className={((this.props.user ? this.props.user.profile.branch : '') === 'PaIR') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('PaIR')}>
-                  <input type="radio" id="pairButton" autoComplete="off" />Public and Internal Relations
-                </label>
-                <label className={((this.props.user ? this.props.user.profile.branch : '') === 'LaS') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('LaS')}>
-                  <input type="radio" id="lasButton" autoComplete="off" />Logistics and Science
-                </label>
-              </div>
+              {this.props.user ? this.renderBranch() : <p>Loading...</p>}
               <br/>
               <br/>
               <h4>Skills</h4>
