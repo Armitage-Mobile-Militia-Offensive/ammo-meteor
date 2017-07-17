@@ -72,17 +72,12 @@ class EditProfile extends Component {
   // }
   renderBranch(){
     return(
-      <div>
       <select className="custom-select" ref="branchSelect" defaultValue={this.props.user.profile.branch}>
         <option value="Fleet" >Fleet</option>
         <option value="Marines" >Marines</option>
         <option value="LaS" >Logistics and Science</option>
         <option value="PaIR" >Public and Internal Relations</option>
       </select>
-        <button className="btn btn-info" style={{ width: '50px', marginLeft: '10px' }} data-toggle="tooltip" data-placement="top" title="Update Branch" onClick={() => this.handleBranchUpdate.bind(this)}>
-          <span className="fa fa-refresh"></span>
-        </button>
-      </div>
     )
   }
   handleBranchUpdate(e){
@@ -92,6 +87,9 @@ class EditProfile extends Component {
   }
   componentWillReceiveProps(){
     return this.props.user ? this.setState({branch: this.props.user.profile.branch}) : undefined
+  }
+  onSubmit(){
+
   }
   render() {
 
@@ -161,9 +159,6 @@ class EditProfile extends Component {
                   width: '160px'
                 }}>Primary Skill</div>
                 <select className="custom-select" ref="primarySkill">{this.mapSkills()}</select>
-                <button className="btn btn-info" style={{ width: '50px', marginLeft: '10px' }} data-toggle="tooltip" data-placement="top" title="Update Primary Skill">
-                  <span className="fa fa-refresh"></span>
-                </button>
               </div>
               <br/>
               <div className="input-group">
@@ -171,15 +166,24 @@ class EditProfile extends Component {
                   width: '160px'
                 }}>Secondary Skill</div>
                 <select className="custom-select" ref="secondarySkill">{this.mapSkills()}</select>
-                <button className="btn btn-info" style={{ width: '50px', marginLeft: '10px' }} data-toggle="tooltip" data-placement="top" title="Update Secondary Skill">
-                  <span className="fa fa-refresh"></span>
-                </button>
               </div>
+            </div>
+            <div className="container">
+              <label className="custom-control custom-checkbox">
+                <input type="checkbox" ref="updateCitizen" className="custom-control-input"/>
+                <span className="custom-control-indicator"></span>
+                <span className="custom-control-description">Update Citizen Information?</span>
+              </label>
             </div>
           </div>
         </div>
         <div className="row"></div>
-        <div className="row"></div>
+        <br/>
+        <div className="row">
+          <button type="submit" onClick={this.onSubmit.bind(this)} className="btn btn-primary btn-block col-12 display-4" style={{fontFamily: 'Electrolize', fontVariant: 'small-caps'}}>
+            <b> S u b m i t </b>
+          </button>
+        </div>
       </div>
     )
   }
