@@ -18,7 +18,8 @@ class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      branch: ''
+      branch: '',
+      userId: ''
     }
   }
   mapSkills() {
@@ -30,31 +31,6 @@ class EditProfile extends Component {
   }
   handleBranchClick = (value) => {
     this.setState({branch: value})
-  }
-  mapEmails() {
-    if (this.props.user) {
-      return this.props.user.emails.map((email) => {
-        return (
-          <div className="row container-fluid" key={`${Meteor.userId() + '#' + email.address}`}>
-            <input type="text" className="form-control col-4" placeholder={email.address}/>
-            <button type="button" className="btn btn-danger col-1" style={{
-              marginRight: '10px',
-              marginLeft: '10px'
-            }}>
-              <span className="fa fa-trash" aria-hidden="true"></span>
-            </button>
-            <button type="button" className="btn btn-info col-1" style={{
-              marginRight: '10px',
-              marginLeft: '10px'
-            }} dataToggle="tooltip" dataPlacement="Top" title="Resend Verification">
-              <span className="fa fa-refresh" aria-hidden="true"></span>
-            </button>
-          </div>
-        )
-      })
-    } else {
-      return ''
-    }
   }
   branchChange(newBranch) {
     Meteor.users.update(Meteor.userId(), {
@@ -86,18 +62,22 @@ class EditProfile extends Component {
     console.log('Branch update fired', this.props.user.profile)
   }
   componentWillReceiveProps(){
-    return this.props.user ? this.setState({branch: this.props.user.profile.branch}) : undefined
+    return this.props.user ? this.setState({branch: this.props.user.profile.branch, userID: this.props.user._id}) : undefined
   }
   onSubmit(){
-
+    if(this.refs.updateAccount.checked){
+      ((this.refs.email.value.trim() < 1) || (this.refs.email.value.trim() === this.props.user.emails[0].adress)) ? console.log('Unchanged') : console.log('Changed')
+    }
+    if(this.refs.updateCitizen.checked){
+      this.refs.branchSelect.value === this.props.user.profile.branch ? undefined : Meteor.users.update(Meteor.userId(), {$set: {"profile.branch": this.refs.branchSelect.value}})
+      this.refs.primarySkill.value === this.props.user.profile.primarySkill ? undefined : Meteor.users.update(Meteor.userId(), {$set: {"profile.primarySkill": this.refs.primarySkill.value}})
+      this.refs.secondarySkill.value === this.props.user.profile.secondarySkill ? undefined : Meteor.users.update(Meteor.userId(), {$set: {"profile.secondarySkill": this.refs.secondarySkill.value}})
+    }
   }
   render() {
-
+    console.log(this.props.user)
     return (
-      <div className="container-fluid" style={{
-        paddingLeft: '50px',
-        paddingRight: '50px'
-      }}>
+      <div className="container-fluid" style={{ paddingLeft: '50px', paddingRight: '50px' }}>
         <div className="row">
           <div className="card card-outline-primary col-7">
             <div className="card-block">
@@ -105,12 +85,8 @@ class EditProfile extends Component {
               <h6 className="card-subtitle mb-2 text-muted">Username, Password, and Email</h6>
               <br/>
               <div className="input-group">
-                <div className="input-group-addon text-right" style={{
-                  width: '110px'
-                }}>Username:</div>
-                <input type="text" className="form-control" placeholder={this.props.user
-                  ? this.props.user.username
-                  : 'Loading...'}/>
+                <div className="input-group-addon text-right" style={{ width: '110px' }}>Username:</div>
+                <input type="text" className="form-control" placeholder={this.props.user ? this.props.user.username : 'Loading...'}/>
               </div>
               <br/>
               <div className="input-group">
@@ -121,13 +97,17 @@ class EditProfile extends Component {
               </div>
               <br/>
               <div className="input-group">
-                <div className="input-group-addon text-right" style={{
-                  width: '110px'
-                }}>Email:</div>
-                <input type="text" className="form-control" placeholder={this.props.user ? this.props.user.emails[0].address : 'Loading...'}/>
-                <button className="btn btn-info" style={{ width: '50px', marginLeft: '10px' }} data-toggle="tooltip" data-placement="top" title="Update email">
-                  <span className="fa fa-refresh"></span>
-                </button>
+                <div className="input-group-addon text-right" style={{ width: '110px' }}>Email:</div>
+                <input type="text" ref='email' className="form-control" placeholder={this.props.user ? this.props.user.emails[0].address : 'Loading...'}/>
+              </div>
+            </div>
+            <div className="row">
+              <div className="container-fluid">
+                <label className="custom-control custom-checkbox">
+                  <input type="checkbox" ref="updateAccount" className="custom-control-input"/>
+                  <span className="custom-control-indicator"></span>
+                  <span className="custom-control-description">Update Citizen Information?</span>
+                </label>
               </div>
             </div>
           </div>
@@ -158,17 +138,17 @@ class EditProfile extends Component {
                 <div className="input-group-addon text-right" style={{
                   width: '160px'
                 }}>Primary Skill</div>
-                <select className="custom-select" ref="primarySkill">{this.mapSkills()}</select>
+                {this.props.user ? <select className="custom-select" ref="primarySkill" defaultValue={this.props.user.profile.primarySkill}>{this.mapSkills()}</select> : <p>Loading..</p>}
               </div>
               <br/>
               <div className="input-group">
                 <div className="input-group-addon text-right" style={{
                   width: '160px'
                 }}>Secondary Skill</div>
-                <select className="custom-select" ref="secondarySkill">{this.mapSkills()}</select>
+                {this.props.user ? <select className="custom-select" ref="secondarySkill" defaultValue={this.props.user.profile.secondarySkill}>{this.mapSkills()}</select> : <p>Loading..</p>}
               </div>
             </div>
-            <div className="container">
+            <div className="container-fluid">
               <label className="custom-control custom-checkbox">
                 <input type="checkbox" ref="updateCitizen" className="custom-control-input"/>
                 <span className="custom-control-indicator"></span>
