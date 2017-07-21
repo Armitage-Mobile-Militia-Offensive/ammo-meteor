@@ -66,9 +66,10 @@ class EditProfile extends Component {
   }
   onSubmit(){
     if(this.refs.updateAccount.checked){
-      ((this.refs.email.value.trim() < 1) || (this.refs.email.value.trim() === this.props.user.emails[0].adress)) ? console.log('Unchanged') : console.log('Changed')
+      ((this.refs.email.value.trim() < 1) || (this.refs.email.value.trim() === this.props.user.emails[0].address)) ? console.log('Unchanged') : console.log('Changed')
     }
     if(this.refs.updateCitizen.checked){
+      ((this.refs.fullName.value.trim() < 1) || (this.refs.fullName.value.trim() === this.props.user.profile.name)) ? console.log('Unchanged') : console.log('Changed')
       this.refs.branchSelect.value === this.props.user.profile.branch ? undefined : Meteor.users.update(Meteor.userId(), {$set: {"profile.branch": this.refs.branchSelect.value}})
       this.refs.primarySkill.value === this.props.user.profile.primarySkill ? undefined : Meteor.users.update(Meteor.userId(), {$set: {"profile.primarySkill": this.refs.primarySkill.value}})
       this.refs.secondarySkill.value === this.props.user.profile.secondarySkill ? undefined : Meteor.users.update(Meteor.userId(), {$set: {"profile.secondarySkill": this.refs.secondarySkill.value}})
