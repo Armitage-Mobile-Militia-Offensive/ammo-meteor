@@ -5,9 +5,9 @@ import { browserHistory } from 'react-router'
 
 export default class Site extends Component {
   constructor(props){
-    super(props);
+    super(props)
     this.state = {
-    };
+    }
   }
   render() {
     return (
