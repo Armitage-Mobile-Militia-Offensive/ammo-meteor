@@ -1,38 +1,14 @@
-/*
-  Matrix Template
-    _id
-    Manufacturer
-    Hull
-    Variant
-    minCrew
-    maxCrew
-    cargo
-    quantumFuel
-    shipSize
-    lti
-    role
-  Fleet Template
-    _id
-    crossShipID
-    jobs []
-    openPositionsNum
-    openPositions []
-    captainID
-    ownerID
-    exoID
-    assignments []
-    base
-    fleetGroup
-  Floatila Template
-    _id
-    crossShipID
-    jobs []
-    openPositionsNum
-    openPositions []
-    captainID
-    ownerID
-    exoID
-    assignments []
-    base
-    militiaGroup
-*/
+import { Meteor } from 'meteor/meteor';
+import SimpleSchema from 'simpl-schema'
+import { Accounts } from 'meteor/accounts-base'
+import { Mongo } from 'meteor/mongo'
+import { User } from './users'
+
+export const MatrixShips = new Mongo.Collection('shipMatrix')
+
+Meteor.methods({
+  'shipMatrix.insert'(){
+    const user = User.find()
+    console.log('User Return', user)
+  }
+})

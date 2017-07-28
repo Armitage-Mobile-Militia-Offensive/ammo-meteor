@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Meteor} from 'meteor/meteor'
 import md5 from 'js-md5'
+import { MatrixShips } from '../api/matrixShips'
 
 const tradeskills = [
   'Pilot - Fighter',
@@ -29,23 +30,6 @@ class EditProfile extends Component {
       )
     })
   }
-  handleBranchClick = (value) => {
-    this.setState({branch: value})
-  }
-  branchChange(newBranch) {
-    Meteor.users.update(Meteor.userId(), {
-      $set: {
-        "profile.someNewField": newData
-      }
-    })
-  }
-  // componentDidMount() {
-  //   $('[data-toggle="tooltip"]').tooltip()
-  // }
-  //
-  // componentDidUpdate() {
-  //   $('[data-toggle="tooltip"]').tooltip()
-  // }
   renderBranch(){
     return(
       <select className="custom-select" ref="branchSelect" defaultValue={this.props.user.profile.branch}>
@@ -55,11 +39,6 @@ class EditProfile extends Component {
         <option value="PaIR" >Public and Internal Relations</option>
       </select>
     )
-  }
-  handleBranchUpdate(e){
-    e.preventDefault()
-    //Meteor.users.update(Meteor.userId(), {$set: {"profile.branch": this.refs.branchSelect.value}})
-    console.log('Branch update fired', this.props.user.profile)
   }
   componentWillReceiveProps(){
     return this.props.user ? this.setState({branch: this.props.user.profile.branch, userID: this.props.user._id}) : undefined
@@ -76,7 +55,7 @@ class EditProfile extends Component {
     }
   }
   render() {
-    console.log(this.props.user)
+    console.log('Props Log:', this.props.user)
     return (
       <div className="container-fluid" style={{ paddingLeft: '50px', paddingRight: '50px' }}>
         <div className="row">
@@ -163,6 +142,9 @@ class EditProfile extends Component {
         <div className="row">
           <button type="submit" onClick={this.onSubmit.bind(this)} className="btn btn-primary btn-block col-12 display-4" style={{fontFamily: 'Electrolize', fontVariant: 'small-caps'}}>
             <b> S u b m i t </b>
+          </button>
+          <button type="button" onClick={() => Meteor.call('shipMatrix.insert')} className="btn btn-primary btn-block col-12 display-4" style={{fontFamily: 'Electrolize', fontVariant: 'small-caps'}}>
+            <b> Meteor Call </b>
           </button>
         </div>
       </div>
