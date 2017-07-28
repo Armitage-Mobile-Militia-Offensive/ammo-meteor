@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Meteor} from 'meteor/meteor'
-import md5 from 'js-md5'
+import EditAccount from './editProfile/editAccount'
 import { MatrixShips } from '../api/matrixShips'
 
 const tradeskills = [
@@ -58,41 +58,7 @@ class EditProfile extends Component {
     console.log('Props Log:', this.props.user)
     return (
       <div className="container-fluid" style={{ paddingLeft: '50px', paddingRight: '50px' }}>
-        <div className="row">
-          <div className="card card-outline-primary col-7">
-            <div className="card-block">
-              <h4 className="display-4">Account Info</h4>
-              <h6 className="card-subtitle mb-2 text-muted">Username, Password, and Email</h6>
-              <br/>
-              <div className="input-group">
-                <div className="input-group-addon text-right" style={{ width: '110px' }}>Username:</div>
-                <input type="text" className="form-control" placeholder={this.props.user ? this.props.user.username : 'Loading...'}/>
-              </div>
-              <br/>
-              <div className="input-group">
-                <div className="input-group-addon text-right" style={{
-                  width: '110px'
-                }}>Password:</div>
-                <input type="text" className="form-control"/>
-              </div>
-              <br/>
-              <div className="input-group">
-                <div className="input-group-addon text-right" style={{ width: '110px' }}>Email:</div>
-                <input type="text" ref='email' className="form-control" placeholder={this.props.user ? this.props.user.emails[0].address : 'Loading...'}/>
-              </div>
-            </div>
-            <div className="row">
-              <div className="container-fluid">
-                <label className="custom-control custom-checkbox">
-                  <input type="checkbox" ref="updateAccount" className="custom-control-input"/>
-                  <span className="custom-control-indicator"></span>
-                  <span className="custom-control-description">Update Citizen Information?</span>
-                </label>
-              </div>
-            </div>
-          </div>
-          <img className="float-right img-thumbnail push-1 col-3 img-fluid rounded" style={{ backgroundSize: 'cover',   backgroundPosition: 'center' }} src={this.props.user ? `https://www.gravatar.com/avatar/${md5(this.props.user.emails[0].address)}?s=200` : ''} style={{ padding: '60px' }}/>
-        </div>
+        {this.props.user ? <EditAccount className="container-fluid" user={this.props.user}/> : <EditAccount className="container-fluid" user={undefined}/>}
         <br/>
         <div className="row">
           <div className="card card-outline-primary col-12">

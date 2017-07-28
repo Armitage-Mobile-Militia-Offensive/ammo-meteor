@@ -8,7 +8,7 @@ export const MatrixShips = new Mongo.Collection('shipMatrix')
 
 Meteor.methods({
   'shipMatrix.insert'(){
-    const user = User.find()
+    const user = Meteor.users.findOne({_id: this.userId})
     console.log('User Return', user)
   }
 })
