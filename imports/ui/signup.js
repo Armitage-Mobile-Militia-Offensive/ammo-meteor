@@ -9,7 +9,7 @@ const tradeskills = ['Pilot - Fighter', 'Pilot', 'Engineer', 'Hauler', 'Explorer
 
 class Signup extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       error: '',
       branch: 'Fleet',

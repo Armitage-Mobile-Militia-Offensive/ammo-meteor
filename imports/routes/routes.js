@@ -17,9 +17,10 @@ import Floatila from '../../client/components/floatila'
 import Schedule from '../../client/components/schedule'
 import NotFound from '../ui/notFound'
 import EditProfile from '../profile/editProfile'
+import AdminDashboard from '../ui/admin/adminDashboard'
 
 const unauthenticatedPages = ['/', '/login', '/about/mission', '/about/history', '/about/rules', '/about/diplomacy', '/floatila', '/signup']
-const authenticatedPages = ['/fleet', '/profile', '/profile/edit', '/schedule']
+const authenticatedPages = ['/fleet', '/profile', '/profile/edit', '/schedule', '/admin']
 const onEnterPrivatePage = () => {
   if (!Meteor.userId()) {
     browserHistory.replace('/login')
@@ -52,6 +53,7 @@ export const routes = (
         <Route path="/schedule" onEnter={onEnterPrivatePage} component={Schedule} />
         <Route path="/profile/edit" onEnter={onEnterPrivatePage} component={EditProfile} />
         <Route path="*" component={NotFound} />
+        <Route path="/admin" component={AdminDashboard} />
       </Route>
     </Router>
 );
