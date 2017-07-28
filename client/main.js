@@ -4,7 +4,7 @@ import {Router, Route, browserHistory} from 'react-router'
 import {Tracker} from 'meteor/tracker'
 
 import {routes, onAuthChange} from '../imports/routes/routes'
-
+import '../imports/startup/simple-schema-configuration.js'
 // const App = () => {
 //   return (
 //     <Router history={browserHistory}>

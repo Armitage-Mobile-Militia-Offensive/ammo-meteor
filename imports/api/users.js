@@ -3,21 +3,17 @@ import SimpleSchema from 'simpl-schema'
 import { Accounts } from 'meteor/accounts-base'
 import { Mongo } from 'meteor/mongo'
 
-export const User = new Mongo.Collection('user')
+const User = new Mongo.Collection('user')
 
-// Accounts.validateNewUser((user) =>{
-//   const email = user.emails[0].address
-//
-//   try {
-//     new SimpleSchema({
-//       email: {
-//         type: String,
-//         regEx: SimpleSchema.RegEx.Email
-//       }
-//     }).validate({email})
-//   } catch(e) {
-//     throw new Meteor.Error(400, e.message)
-//   }
-// return true
-//
-// })
+Accounts.validateNewUser((user) =>{
+  const email = user.emails[0].address
+
+  new SimpleSchema({
+    email: {
+      type: String,
+      regEx: SimpleSchema.RegEx.Email
+    }
+  }).validate({email})
+  return true
+
+})
