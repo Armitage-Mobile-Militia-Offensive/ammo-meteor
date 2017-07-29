@@ -8,9 +8,8 @@ export default class EditAccount extends Component{
       branch: '',
       userId: ''
     }
-  } 
+  }
   render() {
-    console.log(this.props)
     return (
       <div className="row">
         <div className="card card-outline-primary col-7">
@@ -20,23 +19,23 @@ export default class EditAccount extends Component{
             <br/>
             <div className="input-group">
               <div className="input-group-addon text-right" style={{ width: '110px' }}>Username:</div>
-              <input type="text" className="form-control" placeholder={this.props.user ? this.props.user.username : 'Loading...'}/>
+              <input type="text" ref="email" className="form-control" placeholder={this.props.user ? this.props.user.username : 'Loading...'}/>
             </div>
             <br/>
             <div className="input-group">
               <div className="input-group-addon text-right" style={{
                 width: '110px'
               }}>Password:</div>
-              <input type="text" className="form-control"/>
+              <input type="text" ref="password" className="form-control"/>
             </div>
             <br/>
             <div className="input-group">
               <div className="input-group-addon text-right" style={{ width: '110px' }}>Email:</div>
-              <input type="text" ref='email' className="form-control" placeholder={this.props.user ? this.props.user.emails[0].address : 'Loading...'}/>
+              <input type="text" ref="email" className="form-control" placeholder={this.props.user ? this.props.user.emails[0].address : 'Loading...'}/>
             </div>
           </div>
             <div className="container">
-              <button className=" pull-left btn btn-primary">Test</button>
+              <button className=" pull-left btn btn-primary" onClick={() => console.log(this.refs.email.value.trim().length)}>Update Account</button>
             </div>
           <br/>
         </div>

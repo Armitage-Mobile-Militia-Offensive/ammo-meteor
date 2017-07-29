@@ -18,8 +18,8 @@ import { Accounts } from 'meteor/accounts-base';
 Meteor.Methods({
   'editaccount.update'(account){
     const user =  Meteor.users.findOne({_id: this.userId})
-    const email = {user.emails[0].address !== account.email ? account.email : user.emails[0].address}
-    const username = {user.username !== account.email ? account.email : user.username}
+    const email = user.emails[0].address !== account.email ? account.email : user.emails[0].address
+    const username = user.username !== account.email ? account.email : user.username
 
     new SimpleSchema({
       email: {
@@ -32,7 +32,6 @@ Meteor.Methods({
       if( email !== user.emails[0].address){
         Meteor.users.update(Meteor.userId(), {$set: {"profile.secondarySkill": this.refs.secondarySkill.value}})
       }
-      if()
     }
   }
 })
