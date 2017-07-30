@@ -1,6 +1,18 @@
 import React, { Component } from 'react'
 import md5 from 'js-md5'
 
+const tradeskills = [
+  'Pilot - Fighter',
+  'Pilot',
+  'Engineer',
+  'Hauler',
+  'Explorer',
+  'Mining',
+  'Mercenary',
+  'Combat',
+  'Mechanic'
+]
+
 export default class EditCitizen extends Component{
   constructor(props) {
     super(props);
@@ -8,6 +20,23 @@ export default class EditCitizen extends Component{
       branch: '',
       userId: ''
     }
+  }
+  renderBranch(){
+    return(
+      <select className="custom-select" ref="branchSelect" defaultValue={this.props.user.profile.branch}>
+        <option value="Fleet" >Fleet</option>
+        <option value="Marines" >Marines</option>
+        <option value="LaS" >Logistics and Science</option>
+        <option value="PaIR" >Public and Internal Relations</option>
+      </select>
+    )
+  }
+  mapSkills() {
+    return tradeskills.map((tradeskill) => {
+      return (
+        <option value={tradeskill} key={tradeskill}>{tradeskill}</option>
+      )
+    })
   }
   render() {
     console.log(this.props)
@@ -21,9 +50,7 @@ export default class EditCitizen extends Component{
             <h4>Name</h4>
             <h6 className="text-muted">In-game name of character (<b>Not</b> your handle)</h6>
             <div className="input-group row container">
-              <div className="input-group-addon text-right" style={{
-                width: '160px'
-              }}>Full Name:</div>
+              <div className="input-group-addon text-right" style={{ width: '160px' }}>Full Name:</div>
               <input type="text" ref="fullName" className="form-control col-6" placeholder={this.props.user ? this.props.user.profile.name : 'Loading...'}/>
             </div>
             <br/>
@@ -33,16 +60,12 @@ export default class EditCitizen extends Component{
             <br/>
             <h4>Skills</h4>
             <div className="input-group">
-              <div className="input-group-addon text-right" style={{
-                width: '160px'
-              }}>Primary Skill</div>
+              <div className="input-group-addon text-right" style={{ width: '160px' }}>Primary Skill</div>
               {this.props.user ? <select className="custom-select" ref="primarySkill" defaultValue={this.props.user.profile.primarySkill}>{this.mapSkills()}</select> : <p>Loading..</p>}
             </div>
             <br/>
             <div className="input-group">
-              <div className="input-group-addon text-right" style={{
-                width: '160px'
-              }}>Secondary Skill</div>
+              <div className="input-group-addon text-right" style={{ width: '160px' }}>Secondary Skill</div>
               {this.props.user ? <select className="custom-select" ref="secondarySkill" defaultValue={this.props.user.profile.secondarySkill}>{this.mapSkills()}</select> : <p>Loading..</p>}
             </div>
           </div>

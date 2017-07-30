@@ -33,5 +33,5 @@ Meteor.Methods({
         Meteor.users.update(Meteor.userId(), {$set: {"profile.secondarySkill": this.refs.secondarySkill.value}})
       }
     }
-  }
+  }//Close EditAccount.update method
 })

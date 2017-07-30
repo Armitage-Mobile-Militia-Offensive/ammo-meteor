@@ -5,6 +5,8 @@ import {Tracker} from 'meteor/tracker'
 
 import {routes, onAuthChange} from '../imports/routes/routes'
 import '../imports/startup/simple-schema-configuration.js'
+import '../imports/api/users'
+import '../imports/api/matrixShips'
 // const App = () => {
 //   return (
 //     <Router history={browserHistory}>

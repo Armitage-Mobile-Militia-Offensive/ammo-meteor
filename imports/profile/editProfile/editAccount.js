@@ -23,10 +23,13 @@ export default class EditAccount extends Component{
             </div>
             <br/>
             <div className="input-group">
-              <div className="input-group-addon text-right" style={{
-                width: '110px'
-              }}>Password:</div>
-              <input type="text" ref="password" className="form-control"/>
+              <div className="input-group-addon text-right" style={{ width: '110px' }}>Current Password:</div>
+              <input type="text" ref="oldpassword" className="form-control"/>
+            </div>
+            <br/>
+            <div className="input-group">
+              <div className="input-group-addon text-right" style={{ width: '110px' }}>New Password:</div>
+              <input type="text" ref="newpassword" className="form-control"/>
             </div>
             <br/>
             <div className="input-group">
