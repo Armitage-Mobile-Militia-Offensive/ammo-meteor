@@ -4,6 +4,7 @@ import ClockUTC from '../../client/utils/ClockUTC'
 import md5 from 'js-md5'
 import { Meteor } from 'meteor/meteor'
 import { Accounts } from 'meteor/accounts-base'
+import uuidv4 from 'uuid/v4'
 
 const tradeskills = ['Pilot - Fighter', 'Pilot', 'Engineer', 'Hauler', 'Explorer', 'Mining', 'Mercenary', 'Combat', 'Mechanic']
 
@@ -50,7 +51,8 @@ mapSkills() {
         name: name,
         branch: this.state.branch,
         primarySkill: this.refs.primarySkill.value,
-        secondarySkill: this.refs.secondarySkill.value
+        secondarySkill: this.refs.secondarySkill.value,
+        role: 0
       }
       Accounts.createUser({
         username,
@@ -83,12 +85,13 @@ mapSkills() {
     )
   }
   render() {
+    console.log(uuidv4())
       return (
         <div className="container-fluid">
           <div className="alert alert-info text-center" role="alert">
             <strong className="display-4">For authorized users, Welcome.</strong><br/> Please follow the directions to set up your A.M.M.O. account.
           </div>
-          <form onSubmit={this.onSubmit.bind(this)} style={{paddingLeft: '15px', paddingRight: '15px'}}>
+          <form onSubmit={() => alert(Meteor.call('validateEmail', this.refs.email.value.trim()))} style={{paddingLeft: '15px', paddingRight: '15px'}}>
             <div className="row">
               <div className="card card-outline-primary col-7">
                 <div className="card-block">
@@ -138,21 +141,12 @@ mapSkills() {
                   </div>
                   <br/>
                   <h4>Branch</h4>
-                  <div className="btn-group" data-toggle="buttons">
-                    <label className={(this.state.branch === 'Fleet') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('Fleet')} >
-                      <input type="radio" id="fleetButton" autoComplete="off" selected/>Fleet
-                    </label>
-                    <label className={(this.state.branch === 'Marines') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('Marines')} >
-                      <input type="radio" id="marinesButton" autoComplete="off" />Marines
-                    </label>
-                    <label className={(this.state.branch === 'PaIR') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('PaIR')} >
-                      <input type="radio" id="pairButton" autoComplete="off" />Public and Internal Relations
-                    </label>
-                    <label className={(this.state.branch === 'LaS') ? 'btn btn-primary active' : 'btn btn-primary'} onClick={() => this.handleBranchClick('LaS')} >
-                      <input type="radio" id="lasButton" autoComplete="off" />Logistics and Science
-                    </label>
-                  </div>
-                  <br/>
+                  <select className="custom-select" ref="branch">
+                    <option value="Fleet">Fleet</option>
+                    <option value="Marines">Marines</option>
+                    <option value="PaIR">Public and Internal Relations</option>
+                    <option value="LaS">Logistics and Science</option>
+                  </select>
                   <br/>
                   <h4>Skills</h4>
                   <div className="input-group">
