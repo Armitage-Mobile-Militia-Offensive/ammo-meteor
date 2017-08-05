@@ -13,7 +13,6 @@ class Signup extends Component {
     super(props)
     this.state = {
       error: '',
-      branch: 'Fleet',
       passwordPrompt: false
     }
     this.handleChange = this.handleChange.bind(this)
@@ -49,10 +48,10 @@ mapSkills() {
       let name = this.refs.fullName.value.trim()
       let profile = {
         name: name,
-        branch: this.state.branch,
+        branch: this.refs.branch.value,
         primarySkill: this.refs.primarySkill.value,
         secondarySkill: this.refs.secondarySkill.value,
-        role: 0
+        role: 'Director'
       }
       Accounts.createUser({
         username,
@@ -61,9 +60,11 @@ mapSkills() {
         profile
       }, (err) => {
         if(err){
+          console.log(err)
           this.setState({error: err})
         }
       })
+      browserHistory.push('/')
     }
 
   }
@@ -85,13 +86,13 @@ mapSkills() {
     )
   }
   render() {
-    console.log(uuidv4())
+    console.log(this.state)
       return (
         <div className="container-fluid">
           <div className="alert alert-info text-center" role="alert">
             <strong className="display-4">For authorized users, Welcome.</strong><br/> Please follow the directions to set up your A.M.M.O. account.
           </div>
-          <form onSubmit={() => alert(Meteor.call('validateEmail', this.refs.email.value.trim()))} style={{paddingLeft: '15px', paddingRight: '15px'}}>
+          <form onSubmit={this.onSubmit.bind(this)} style={{paddingLeft: '15px', paddingRight: '15px'}}>
             <div className="row">
               <div className="card card-outline-primary col-7">
                 <div className="card-block">
@@ -148,6 +149,7 @@ mapSkills() {
                     <option value="LaS">Logistics and Science</option>
                   </select>
                   <br/>
+                  <br/>
                   <h4>Skills</h4>
                   <div className="input-group">
                     <div className="input-group-addon text-right" style={{width: '160px'}}>Primary Skill</div>
@@ -161,7 +163,7 @@ mapSkills() {
                 </div>
               </div>
             </div>
-            <button className="btn btn-block" style={{margin: '0px'}}>Submit</button>
+            <button type="submit" className="btn btn-block" onClick={() => this.onSubmit.bind(this)} style={{margin: '0px'}}>Submit</button>
           </form>
         </div>
       )

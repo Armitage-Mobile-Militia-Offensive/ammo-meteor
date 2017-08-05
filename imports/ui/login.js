@@ -19,7 +19,7 @@ class Login extends Component {
     let password = this.refs.password.value.trim()
     Meteor.loginWithPassword({ email }, password, (err) => {
       if (err) {
-        this.setState({error: 'Unable to login. Check email and password.'})
+        this.setState({error: err.reason})
       } else {
         this.setState({error: ''})
       }
@@ -35,7 +35,7 @@ class Login extends Component {
           <div className="col-10 offset-1">
             <h1 className="display-4 alert alert-danger text-center" style={{ fontFamily: 'Electrolize' }}>
               <span className="fa fa-exclamation-triangle" aria-hidden="true"></span>
-               Restricted Access 
+               Restricted Access
               <span className="fa fa-exclamation-triangle" aria-hidden="true"></span>
             </h1>
             <div className="card text-center row ">
@@ -43,6 +43,9 @@ class Login extends Component {
               <br/>
               <h4 className="card-title" style={{fontFamily: 'Electrolize'}}>A.M.M.O. Login</h4>
               <p className="card-text">For authorized users, Welcome. Please enter your Credentials</p>
+
+              {this.state.error ? <div className="alert alert-danger col-6 offset-3">{this.state.error}</div> : undefined}
+
               <form onSubmit={this.onSubmit.bind(this)}>
                 <div className="input-group container-fluid col-6 offset-3 row">
                   <div className="input-group-addon container-fluid col-3 text-right" style={{width: '100px'}}>Email</div>
