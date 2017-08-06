@@ -35,6 +35,12 @@ Meteor.methods({
         Accounts.sendVerificationEmail(this.userId, email)
       }
     }
+
+    if(this.userId === user._id) {
+        if(user.username !== username) {
+          Accounts.setUsername(this.userId, username)
+        }
+    }
   }, //Close Edit Account Update method
   'validateEmail'(email){
     new SimpleSchema({

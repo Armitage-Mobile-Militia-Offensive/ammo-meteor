@@ -18,27 +18,28 @@ export default class EditAccount extends Component{
             <h6 className="card-subtitle mb-2 text-muted">Username, Password, and Email</h6>
             <br/>
             <div className="input-group">
-              <div className="input-group-addon text-right" style={{ width: '110px' }}>Username:</div>
-              <input type="text" ref="email" className="form-control" placeholder={this.props.user ? this.props.user.username : 'Loading...'}/>
+              <div className="input-group-addon text-right" style={{ width: '180px' }}>Username:</div>
+              <input type="text" ref="username" className="form-control" placeholder={this.props.user ? this.props.user.username : 'Loading...'}/>
             </div>
             <br/>
             <div className="input-group">
-              <div className="input-group-addon text-right" style={{ width: '110px' }}>Current Password:</div>
+              <div className="input-group-addon text-right" style={{ width: '180px' }}>Current Password:</div>
               <input type="text" ref="oldpassword" className="form-control"/>
             </div>
             <br/>
             <div className="input-group">
-              <div className="input-group-addon text-right" style={{ width: '110px' }}>New Password:</div>
+              <div className="input-group-addon text-right" style={{ width: '180px' }}>New Password:</div>
               <input type="text" ref="newpassword" className="form-control"/>
             </div>
             <br/>
             <div className="input-group">
-              <div className="input-group-addon text-right" style={{ width: '110px' }}>Email:</div>
+              <div className="input-group-addon text-right" style={{ width: '180px' }}>Email:</div>
               <input type="text" ref="email" className="form-control" placeholder={this.props.user ? this.props.user.emails[0].address : 'Loading...'}/>
             </div>
           </div>
             <div className="container">
-              <button className=" pull-left btn btn-primary" onClick={() => console.log(this.refs.email.value.trim().length)}>Update Account</button>
+              <button className=" pull-left btn btn-primary" onClick={() => Meteor.call('editAccount.update', {email: this.refs.email.value.trim(), username: this.refs.})}>Update Account</button>
+              <button className=" pull-left btn btn-primary" onClick={() => Meteor.call('userPassword.update')}>Update Password</button>
             </div>
           <br/>
         </div>

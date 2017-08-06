@@ -25,9 +25,6 @@ class EditProfile extends Component {
         <div className="row"></div>
         <br/>
         <div className="row">
-          <button type="button" onClick={() => Meteor.call('shipMatrix.insert')} className="btn btn-primary btn-block col-12 display-4" style={{fontFamily: 'Electrolize', fontVariant: 'small-caps'}}>
-            <b> Meteor Call </b>
-          </button>
         </div>
       </div>
     )
