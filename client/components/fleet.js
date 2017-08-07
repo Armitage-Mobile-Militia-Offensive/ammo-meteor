@@ -2,7 +2,7 @@ import React from 'react';
 
 const Fleet = () => {
   return (
-    <div className="container">
+    <div className="container d-flex align-items-center">
       <div className="text-center display-4">
         <span className="fa fa-calendar-o" aria-hidden="true"></span>
       </div>

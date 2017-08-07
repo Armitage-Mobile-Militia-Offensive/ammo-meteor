@@ -4,7 +4,7 @@ import EditAccount from './editProfile/editAccount'
 import EditCitizen from './editProfile/editCitizen'
 import { MatrixShips } from '../api/matrixShips'
 
-class EditProfile extends Component {
+export default class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,13 +25,8 @@ class EditProfile extends Component {
         <div className="row"></div>
         <br/>
         <div className="row">
-          <button type="button" onClick={() => Meteor.call('shipMatrix.insert')} className="btn btn-primary btn-block col-12 display-4" style={{fontFamily: 'Electrolize', fontVariant: 'small-caps'}}>
-            <b> Meteor Call </b>
-          </button>
         </div>
       </div>
     )
   }
 }
-
-export default EditProfile
