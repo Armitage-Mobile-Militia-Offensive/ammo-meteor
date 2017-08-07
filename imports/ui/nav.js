@@ -73,7 +73,7 @@ export class Nav extends Component {
           case "home":
               (browserHistory.getCurrentLocation().pathname === '/') ? null : this.setState({home: hoveredItem})
               break
-          case "scheduler":
+          case "schedule":
               (browserHistory.getCurrentLocation().pathname === '/scheduler') ? null : this.setState({scheduler: hoveredItem})
               break
           case "floatila":
@@ -94,7 +94,7 @@ export class Nav extends Component {
           case "home":
               (browserHistory.getCurrentLocation().pathname === '/') ? null : this.setState({home: navItem})
               break
-          case "scheduler":
+          case "schedule":
               (browserHistory.getCurrentLocation().pathname === '/scheduler') ? null : this.setState({scheduler: navItem})
               break
           case "floatila":
@@ -160,7 +160,7 @@ export class Nav extends Component {
                           <Link to="/" className="nav-link" style={this.state.home} onMouseEnter={() => this.onMouseEnter("home")} onMouseLeave={() => this.onMouseLeave("home")}>Home</Link>
                       </li>
                       <li className="nav-item" >
-                          <Link to="/schedule" className="nav-link" style={this.state.scheduler} onMouseEnter={() => this.onMouseEnter("scheduler")} onMouseLeave={() => this.onMouseLeave("scheduler")}>Schedule</Link>
+                          <Link to="/schedule" className="nav-link" style={this.state.scheduler} onMouseEnter={() => this.onMouseEnter("schedule")} onMouseLeave={() => this.onMouseLeave("scheduler")}>Schedule</Link>
                       </li>
                       <li className="nav-item" >
                           <Link to="/floatila" className="nav-link" style={this.state.floatila} onMouseEnter={() => this.onMouseEnter("floatila")} onMouseLeave={() => this.onMouseLeave("floatila")}>Floatila</Link>

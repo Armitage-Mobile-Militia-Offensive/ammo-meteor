@@ -4,7 +4,7 @@ import EditAccount from './editProfile/editAccount'
 import EditCitizen from './editProfile/editCitizen'
 import { MatrixShips } from '../api/matrixShips'
 
-class EditProfile extends Component {
+export default class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,5 +30,3 @@ class EditProfile extends Component {
     )
   }
 }
-
-export default EditProfile

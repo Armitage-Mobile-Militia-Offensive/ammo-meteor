@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Accounts} from 'meteor/accounts-base'
 import md5 from 'js-md5'
 
 export default class EditAccount extends Component{
@@ -6,7 +7,8 @@ export default class EditAccount extends Component{
     super(props);
     this.state = {
       branch: '',
-      userId: ''
+      userId: '',
+      error: ''
     }
   }
   render() {
@@ -24,12 +26,12 @@ export default class EditAccount extends Component{
             <br/>
             <div className="input-group">
               <div className="input-group-addon text-right" style={{ width: '180px' }}>Current Password:</div>
-              <input type="text" ref="oldpassword" className="form-control"/>
+              <input type="password" ref="oldpassword" className="form-control"/>
             </div>
             <br/>
             <div className="input-group">
               <div className="input-group-addon text-right" style={{ width: '180px' }}>New Password:</div>
-              <input type="text" ref="newpassword" className="form-control"/>
+              <input type="password" ref="newpassword" className="form-control"/>
             </div>
             <br/>
             <div className="input-group">
@@ -38,10 +40,11 @@ export default class EditAccount extends Component{
             </div>
           </div>
             <div className="container">
-              <button className=" pull-left btn btn-primary" onClick={() => Meteor.call('editAccount.update', {email: this.refs.email.value.trim(), username: this.refs.})}>Update Account</button>
-              <button className=" pull-left btn btn-primary" onClick={() => Meteor.call('userPassword.update')}>Update Password</button>
+              <button className="pull-left btn btn-primary" onClick={() => Meteor.call('editAccount.update', {email: this.refs.email.value.trim(), username: this.refs.username.value.trim()})}>Update Account</button>
+              <button className="pull-left btn btn-primary" onClick={() => Accounts.changePassword(this.refs.oldpassword.value, this.refs.newpassword.value, (err) => { this.setState({error: err.reason})})}>Update Password</button>
             </div>
           <br/>
+          {this.state.error ? <div className="alert alert-danger">{this.state.error}</div> : undefined}
         </div>
         <img className="float-right img-thumbnail push-1 col-3 img-fluid rounded" style={{ backgroundSize: 'cover',   backgroundPosition: 'center' }} src={this.props.user ? `https://www.gravatar.com/avatar/${md5(this.props.user.emails[0].address)}?s=200` : ''} style={{ padding: '60px' }}/>
       </div>
