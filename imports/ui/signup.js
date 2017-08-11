@@ -68,9 +68,6 @@ mapSkills() {
     }
 
   }
-  handleBranchClick = (value) => {
-    this.setState({branch: value})
-  }
   handleChange(event){
     event.target.value.length > 8 ? this.setState({passwordPrompt: false}) : this.setState({passwordPrompt: true})
   }

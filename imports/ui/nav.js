@@ -26,7 +26,7 @@ export class Nav extends Component {
           home: navItem,
           floatila: navItem,
           fleet: navItem,
-          scheduler: navItem,
+          schedule: navItem,
           about: navItem
       }
   }
@@ -34,31 +34,31 @@ export class Nav extends Component {
   navSwitching = () => {
     switch(browserHistory.getCurrentLocation().pathname){
       case "/":
-          return this.setState({home: activeNavItem, floatila: navItem, fleet: navItem, scheduler: navItem, about: navItem})
+          return this.setState({home: activeNavItem, floatila: navItem, fleet: navItem, schedule: navItem, about: navItem})
           break
       case "/schedule":
-          return this.setState({home: navItem, floatila: navItem, fleet: navItem, scheduler: activeNavItem, about: navItem})
+          return this.setState({home: navItem, floatila: navItem, fleet: navItem, schedule: activeNavItem, about: navItem})
           break
       case "/floatila":
-          return this.setState({home: navItem, floatila: activeNavItem, fleet: navItem, scheduler: navItem, about: navItem})
+          return this.setState({home: navItem, floatila: activeNavItem, fleet: navItem, schedule: navItem, about: navItem})
           break
       case "/fleet":
-          return this.setState({home: navItem, floatila: navItem, fleet: activeNavItem, scheduler: navItem, about: navItem})
+          return this.setState({home: navItem, floatila: navItem, fleet: activeNavItem, schedule: navItem, about: navItem})
           break
       case "/about/mission":
-          return this.setState({home: navItem, floatila: navItem, fleet: navItem, scheduler: navItem, about: activeNavItem})
+          return this.setState({home: navItem, floatila: navItem, fleet: navItem, schedule: navItem, about: activeNavItem})
           break
       case "/about/rules":
-          return this.setState({home: navItem, floatila: navItem, fleet: navItem, scheduler: navItem, about: activeNavItem})
+          return this.setState({home: navItem, floatila: navItem, fleet: navItem, schedule: navItem, about: activeNavItem})
           break
       case "/about/history":
-          return this.setState({home: navItem, floatila: navItem, fleet: navItem, scheduler: navItem, about: activeNavItem})
+          return this.setState({home: navItem, floatila: navItem, fleet: navItem, schedule: navItem, about: activeNavItem})
           break
       case "/about/diplomacy":
-          return this.setState({home: navItem, floatila: navItem, fleet: navItem, scheduler: navItem, about: activeNavItem})
+          return this.setState({home: navItem, floatila: navItem, fleet: navItem, schedule: navItem, about: activeNavItem})
           break
       default:
-          return this.setState({home: navItem, floatila: navItem, fleet: navItem, scheduler: navItem, about: navItem})
+          return this.setState({home: navItem, floatila: navItem, fleet: navItem, schedule: navItem, about: navItem})
     }
   }
   componentWillMount(){
@@ -74,7 +74,7 @@ export class Nav extends Component {
               (browserHistory.getCurrentLocation().pathname === '/') ? null : this.setState({home: hoveredItem})
               break
           case "schedule":
-              (browserHistory.getCurrentLocation().pathname === '/scheduler') ? null : this.setState({scheduler: hoveredItem})
+              (browserHistory.getCurrentLocation().pathname === '/schedule') ? null : this.setState({schedule: hoveredItem})
               break
           case "floatila":
               (browserHistory.getCurrentLocation().pathname === '/floatila') ? null : this.setState({floatila: hoveredItem})
@@ -86,7 +86,7 @@ export class Nav extends Component {
               (browserHistory.getCurrentLocation().pathname.includes('/about')) ? null : this.setState({about: hoveredItem})
               break
           default:
-              this.setState({home: navItem, floatila: navItem, fleet: navItem, scheduler: navItem, about: navItem})
+              this.setState({home: navItem, floatila: navItem, fleet: navItem, schedule: navItem, about: navItem})
       }
   }
   onMouseLeave = (link) => {
@@ -95,7 +95,7 @@ export class Nav extends Component {
               (browserHistory.getCurrentLocation().pathname === '/') ? null : this.setState({home: navItem})
               break
           case "schedule":
-              (browserHistory.getCurrentLocation().pathname === '/scheduler') ? null : this.setState({scheduler: navItem})
+              (browserHistory.getCurrentLocation().pathname === '/schedule') ? null : this.setState({schedule: navItem})
               break
           case "floatila":
               (browserHistory.getCurrentLocation().pathname === '/floatila') ? null : this.setState({floatila: navItem})
@@ -107,7 +107,7 @@ export class Nav extends Component {
               (browserHistory.getCurrentLocation().pathname.includes('/about')) ? null : this.setState({about: navItem})
               break
           default:
-              this.setState({home: navItem, floatila: navItem, fleet: navItem, scheduler: navItem, about: navItem});
+              this.setState({home: navItem, floatila: navItem, fleet: navItem, schedule: navItem, about: navItem});
       }
   }
 
@@ -160,7 +160,7 @@ export class Nav extends Component {
                           <Link to="/" className="nav-link" style={this.state.home} onMouseEnter={() => this.onMouseEnter("home")} onMouseLeave={() => this.onMouseLeave("home")}>Home</Link>
                       </li>
                       <li className="nav-item" >
-                          <Link to="/schedule" className="nav-link" style={this.state.scheduler} onMouseEnter={() => this.onMouseEnter("schedule")} onMouseLeave={() => this.onMouseLeave("scheduler")}>Schedule</Link>
+                          <Link to="/schedule" className="nav-link" style={this.state.schedule} onMouseEnter={() => this.onMouseEnter("schedule")} onMouseLeave={() => this.onMouseLeave("schedule")}>Schedule</Link>
                       </li>
                       <li className="nav-item" >
                           <Link to="/floatila" className="nav-link" style={this.state.floatila} onMouseEnter={() => this.onMouseEnter("floatila")} onMouseLeave={() => this.onMouseLeave("floatila")}>Floatila</Link>
