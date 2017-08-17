@@ -14,6 +14,7 @@ const Home = () => {
         <div className="container">
           <div className="text-center" style={{ fontFamily: 'Electrolize', color: 'white'}}>Armitage Mobile Militia Offensive</div>
           <div className="text-center display-1" style={{ fontFamily: 'Electrolize', marginBottom: '0%', color: '#F59B45'}}><b> A . M . M . O . </b></div>
+          <div className="text-center display-1" style={{ fontFamily: 'Electrolize', marginBottom: '0%', color: '#F59B45'}}><b> A . M . M . O . </b></div>
           <div className="text-center text-muted" style={{ fontFamily: 'Offside', color: 'white'}}><small>ex oblivione, unitas</small></div>
        </div>
     </div>
