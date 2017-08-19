@@ -140,40 +140,18 @@ export class Nav extends Component {
       }
 
       return (
-          <nav className="navbar navbar-toggleable-md fixed-top navbar-dark bg-inverse" style={{
+          <nav className="navbar fixed-top" style={{
               fontFamily: 'Electrolize',
-              padding: '0px'
+              padding: '0px',
+              background: 'rgba(255,0,0,.5)'
           }}>
-              <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                  <span className="fa fa-bars nav-text" aria-hidden="true" style={{
-                      backgroundColor: 'white',
-                      marginTop: '20%',
-                      marginBottom: '20%'
-                  }}></span>
-              </button>
-              <Link to="/"><img src="/assets/AMMO_LOGOv2.png" className="navbar-brand" alt="" style={{
-              height: '40px'
-          }}/></Link>
-              <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                  <ul className="navbar-nav mr-auto">
-                      <li className="nav-item" >
-                          <Link to="/" className="nav-link" style={this.state.home} onMouseEnter={() => this.onMouseEnter("home")} onMouseLeave={() => this.onMouseLeave("home")}>Home</Link>
-                      </li>
-                      <li className="nav-item" >
-                          <Link to="/schedule" className="nav-link" style={this.state.schedule} onMouseEnter={() => this.onMouseEnter("schedule")} onMouseLeave={() => this.onMouseLeave("schedule")}>Schedule</Link>
-                      </li>
-                      <li className="nav-item" >
-                          <Link to="/floatila" className="nav-link" style={this.state.floatila} onMouseEnter={() => this.onMouseEnter("floatila")} onMouseLeave={() => this.onMouseLeave("floatila")}>Floatila</Link>
-                      </li>
-                      <li className="nav-item">
-                          <Link to="/fleet" className="nav-link" style={this.state.fleet} onMouseEnter={() => this.onMouseEnter("fleet")} onMouseLeave={() => this.onMouseLeave("fleet")}>Fleet</Link>
-                      </li>
-                      <li className="nav-item">
-                          <Link to="/about/mission" className="nav-link" style={this.state.about} onMouseEnter={() => this.onMouseEnter("about")} onMouseLeave={() => this.onMouseLeave("about")}>About</Link>
-                      </li>
-                  </ul>
-                  {renderProfileDropdown()}
-              </div>
+              <Link to="/"><img src="/assets/AMMO_LOGOv2.png" className="navbar-brand" alt="" style={{height: '40px'}}/></Link>
+              <Link to="/" className="nav-link" style={this.state.home} onMouseEnter={() => this.onMouseEnter("home")} onMouseLeave={() => this.onMouseLeave("home")}>Home</Link>
+              <Link to="/schedule" className="nav-link" style={this.state.schedule} onMouseEnter={() => this.onMouseEnter("schedule")} onMouseLeave={() => this.onMouseLeave("schedule")}>Schedule</Link>
+              <Link to="/floatila" className="nav-link" style={this.state.floatila} onMouseEnter={() => this.onMouseEnter("floatila")} onMouseLeave={() => this.onMouseLeave("floatila")}>Floatila</Link>
+              <Link to="/fleet" className="nav-link" style={this.state.fleet} onMouseEnter={() => this.onMouseEnter("fleet")} onMouseLeave={() => this.onMouseLeave("fleet")}>Fleet</Link>
+              <Link to="/about/mission" className="nav-link" style={this.state.about} onMouseEnter={() => this.onMouseEnter("about")} onMouseLeave={() => this.onMouseLeave("about")}>About</Link>
+              {renderProfileDropdown()}
           </nav>
       )
   }
