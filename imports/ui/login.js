@@ -18,13 +18,15 @@ class Login extends Component {
   render() {
     if (!Meteor.userId()) {
       return (
-        <div className="row">
-          <LoginForm  />
+        <div className="d-flex align-items-center" style={{height: '100vh', width: '100vw'}}>
+          <LoginForm />
         </div>
       )
     } else {
       return (
-        <LoginCard user={this.props.user ? this.props.user : undefined}/>
+        <div className="d-flex align-items-center" style={{height: '100vh', width: '100vw'}}>
+          <LoginCard user={this.props.user ? this.props.user : undefined}/>
+        </div>
       )
     }
   }

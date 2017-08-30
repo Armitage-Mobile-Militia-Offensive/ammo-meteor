@@ -6,7 +6,7 @@ import { Meteor } from 'meteor/meteor'
 import { Accounts } from 'meteor/accounts-base'
 import uuidv4 from 'uuid/v4'
 
-const tradeskills = ['Pilot - Fighter', 'Pilot', 'Engineer', 'Hauler', 'Explorer', 'Mining', 'Mercenary', 'Combat', 'Mechanic']
+const tradeskills = ['Pilot - Fighter', 'Pilot', 'Engineer', 'Hauler', 'Explorer', 'Mining', 'Mercenary', 'Combat', 'Mechanic', 'Diplomat', 'Ambassador', 'Broker', 'Salesman', 'Recruiter', 'Racer', 'Scientist', 'Analyst']
 
 class Signup extends Component {
   constructor(props) {

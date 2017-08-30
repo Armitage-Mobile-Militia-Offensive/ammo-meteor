@@ -16,7 +16,6 @@ export default class EditProfile extends Component {
     return this.props.user ? this.setState({branch: this.props.user.profile.branch, userID: this.props.user._id}) : undefined
   }
   render() {
-    console.log('Props Log:', this.props.user)
     return (
       <div className="container-fluid" style={{ paddingLeft: '50px', paddingRight: '50px' }}>
         {this.props.user ? <EditAccount className="container-fluid" user={this.props.user}/> : <EditAccount className="container-fluid" user={undefined}/>}

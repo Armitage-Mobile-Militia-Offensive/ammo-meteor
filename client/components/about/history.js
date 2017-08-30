@@ -14,6 +14,7 @@ const History = () => {
       <p>In recent months, new developments have slightly altered AMMO’s focus, however. After years of subsistence operations, rumors reached the Director’s ears of a prize worth focusing on. After being captured following a devastating attack on a MISC ship dealership protected by an AMMO security contract, a notorious scoundrel named [REDACTED] offered to reveal the location of a lost Idris-class frigate — believed to have been lost sometime shortly after the fall of Caliban — in exchange for leniency in dealings with the Advocacy. With most investigations of the rumor leaning towards its validity, the Director has renewed the traditional council of captains, gathering a group of experts in intelligence, shipboard security, and fleet maneuvers. It’s clear that AMMO intends to find this “lost ship”, even if it takes a fleet wide mobilization on a scale not seen since Orion and Caliban. A new flagship may be in store for the Armitage Mobile Militia Offensive – and with it, perhaps a new course — back towards the dangerous edges of the UEE, where protection is needed most.</p>
 
       <div className="text-center display-2" style={{fontVariant: 'small-caps'}}>The Final Order Stands</div>
+      <div className="hr"></div>
     </div>
   );
 };

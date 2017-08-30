@@ -1,17 +1,8 @@
 import React, { Component } from 'react'
 import md5 from 'js-md5'
 
-const tradeskills = [
-  'Pilot - Fighter',
-  'Pilot',
-  'Engineer',
-  'Hauler',
-  'Explorer',
-  'Mining',
-  'Mercenary',
-  'Combat',
-  'Mechanic'
-]
+const tradeskills = ['Pilot - Fighter', 'Pilot', 'Engineer', 'Hauler', 'Explorer', 'Mining', 'Mercenary', 'Combat', 'Mechanic', 'Diplomat', 'Ambassador', 'Broker', 'Salesman', 'Recruiter', 'Racer', 'Scientist', 'Analyst']
+
 
 export default class EditCitizen extends Component{
   constructor(props) {
@@ -23,7 +14,7 @@ export default class EditCitizen extends Component{
   }
   renderBranch(){
     return(
-      <select className="custom-select" ref="branchSelect" defaultValue={this.props.user.profile.branch}>
+      <select className="form-control" ref="branchSelect" defaultValue={this.props.user.profile.branch}>
         <option value="Fleet" >Fleet</option>
         <option value="Marines" >Marines</option>
         <option value="LaS" >Logistics and Science</option>
@@ -39,7 +30,6 @@ export default class EditCitizen extends Component{
     })
   }
   render() {
-    console.log(this.props)
     return (
       <div className="row">
         <div className="card card-outline-primary col-12">
@@ -49,32 +39,43 @@ export default class EditCitizen extends Component{
             <br/>
             <h4>Name</h4>
             <h6 className="text-muted">In-game name of character (<b>Not</b> your handle)</h6>
-            <div className="input-group row container">
-              <div className="input-group-addon text-right" style={{ width: '160px' }}>Full Name:</div>
-              <input type="text" ref="fullName" className="form-control col-6" placeholder={this.props.user ? this.props.user.profile.name : 'Loading...'}/>
+            <div className="form-group row">
+              <label className="col-sm-1 col-form-label text-right">Full Name</label>
+                <div className="col-sm-5">
+                  <input type="text" ref="fullName" className="form-control" placeholder={this.props.user ? this.props.user.profile.name : 'Loading...'}/>
+                  <p className="form-text text-muted">Current name: {this.props.user ? this.props.user.profile.name : 'Loading...'}</p>
+                </div>
             </div>
-            <br/>
             <h4>Branch</h4>
-            {this.props.user ? this.renderBranch() : <p>Loading...</p>}
-            <br/>
-            <br/>
+            <div className="form-group row">
+              <div className="col-sm-1"></div>
+              <div className="col-sm-5">
+                {this.props.user ? this.renderBranch() : <p>Loading...</p>}
+                <p className="form-text text-muted">Current branch: {this.props.user ? this.props.user.profile.branch : 'Loading...'}</p>
+              </div>
+            </div>
             <h4>Skills</h4>
-            <div className="input-group">
-              <div className="input-group-addon text-right" style={{ width: '160px' }}>Primary Skill</div>
-              {this.props.user ? <select className="custom-select" ref="primarySkill" defaultValue={this.props.user.profile.primarySkill}>{this.mapSkills()}</select> : <p>Loading..</p>}
+            <div className="form-group row">
+              <label className="col-sm-1 col-form-label text-right">Primary Skill</label>
+                <div className="col-sm-5">
+                  {this.props.user ? <select className="form-control" ref="primarySkill" defaultValue={this.props.user.profile.primarySkill}>{this.mapSkills()}</select> : <p>Loading..</p>}
+                  <p className="form-text text-muted">Current primary skill: {this.props.user ? this.props.user.profile.primarySkill : 'Loading...'}</p>
+                </div>
+            </div>
+            <div className="form-group row">
+              <label className="col-sm-1 col-form-label text-right">Secondary Skill</label>
+                <div className="col-sm-5">
+                  {this.props.user ? <select className="form-control" ref="secondarySkill" defaultValue={this.props.user.profile.secondarySkill}>{this.mapSkills()}</select> : <p>Loading..</p>}
+                  <p className="form-text text-muted">Current secondary skill: {this.props.user ? this.props.user.profile.secondarySkill : 'Loading...'}</p>
+                </div>
+            </div>
+            <div className="row">
+              <div className="col-sm-1"></div>
+              <div className="col-sm-11">
+                <button className="btn btn-outline-dark">Update Citizen</button>
+              </div>
             </div>
             <br/>
-            <div className="input-group">
-              <div className="input-group-addon text-right" style={{ width: '160px' }}>Secondary Skill</div>
-              {this.props.user ? <select className="custom-select" ref="secondarySkill" defaultValue={this.props.user.profile.secondarySkill}>{this.mapSkills()}</select> : <p>Loading..</p>}
-            </div>
-          </div>
-          <div className="container-fluid">
-            <label className="custom-control custom-checkbox">
-              <input type="checkbox" ref="updateCitizen" className="custom-control-input"/>
-              <span className="custom-control-indicator"></span>
-              <span className="custom-control-description">Update Citizen Information?</span>
-            </label>
           </div>
         </div>
       </div>

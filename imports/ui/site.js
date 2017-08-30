@@ -13,6 +13,7 @@ export default class Site extends Component {
     return (
       <div>
         <Nav user={this.props.user}/>
+        <div style={{position: 'fixed', top: '0', minHeight: '50px', marginBottom: '20px', background: 'rgba(0,0,0,.4)', zIndex: '1010', filter: 'blur(20px)', width: '100%'}}></div>
         <div style={{paddingTop: `${browserHistory.getCurrentLocation().pathname === '/' ? '0px' : '53px' }`, fontFamily: 'Electrolize'}}>
           {React.cloneElement(this.props.children, { user: this.props.user })}
         </div>
