@@ -136,7 +136,6 @@ export class Nav extends Component {
       }
 
       return (
-<<<<<<< HEAD
           <nav className="navbar navbar-expand-sm fixed-top" style={{ fontFamily: 'Electrolize', padding: '0px', marginBottom: '0px', backgroundColor: 'rgba(0,0,0,.5)', zIndex: '202020', backdropFilter: 'blur(20px)' }}>
                 <Link to="/"><img src="/assets/AMMO_LOGOv2.png" className="navbar-brand" alt="AMMO Logo" style={{ height: '40px' }}/></Link>
                 <ul className="navbar-nav mr-auto">
@@ -157,18 +156,7 @@ export class Nav extends Component {
                     </li>
                 </ul>
                 {renderProfileDropdown()}
-          <nav className="navbar fixed-top" style={{
-              fontFamily: 'Electrolize',
-              padding: '0px',
-              background: 'rgba(255,0,0,.5)'
-          }}>
-              <Link to="/"><img src="/assets/AMMO_LOGOv2.png" className="navbar-brand" alt="" style={{height: '40px'}}/></Link>
-              <Link to="/" className="nav-link" style={this.state.home} onMouseEnter={() => this.onMouseEnter("home")} onMouseLeave={() => this.onMouseLeave("home")}>Home</Link>
-              <Link to="/schedule" className="nav-link" style={this.state.schedule} onMouseEnter={() => this.onMouseEnter("schedule")} onMouseLeave={() => this.onMouseLeave("schedule")}>Schedule</Link>
-              <Link to="/floatila" className="nav-link" style={this.state.floatila} onMouseEnter={() => this.onMouseEnter("floatila")} onMouseLeave={() => this.onMouseLeave("floatila")}>Floatila</Link>
-              <Link to="/fleet" className="nav-link" style={this.state.fleet} onMouseEnter={() => this.onMouseEnter("fleet")} onMouseLeave={() => this.onMouseLeave("fleet")}>Fleet</Link>
-              <Link to="/about/mission" className="nav-link" style={this.state.about} onMouseEnter={() => this.onMouseEnter("about")} onMouseLeave={() => this.onMouseLeave("about")}>About</Link>
-              {renderProfileDropdown()}
+          
           </nav>
       )
   }
