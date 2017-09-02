@@ -4,18 +4,18 @@ const Rules = () => {
   return (
     <div className="container">
       <div className="display-3 text-right">Rules</div>
-      <ul className="list-group row">
-        <li className="container-fluid list-group-item row">Stow your differences in comms</li>
-        <li className="container-fluid list-group-item row">All members are welcome in A.M.M.O. property</li>
-        <li className="container-fluid list-group-item row">
-          <p className="container-fluid col-6">You are to follow rules in order:</p>
-          <ol className="container-fluid col-6">
+      <ul className="list-unstyled">
+        <li className="list-item">Stow your differences in comms</li>
+        <li className="list-item">All members are welcome in A.M.M.O. property</li>
+        <li className="list-item" style={{padding: '0px'}}>
+          You are to follow rules in order:
+          <ol className=" ">
             <li>A.M.M.O. Guidlines</li>
             <li>On long-term assignment / capital posting adhere to local captain ruling</li>
           </ol>
         </li>
-        <li className="container-fluid list-group-item row">A captain's duty is to their crew</li>
-        <li className="container-fluid list-group-item row">In combat keep comms clear of idle traffic</li>
+        <li className=" ">A captain's duty is to their crew</li>
+        <li className=" ">In combat keep comms clear of idle traffic</li>
       </ul>
       <br/>
       <br/>

@@ -7,6 +7,8 @@ import History from './about/history'
 import Rules from './about/rules'
 import Diplomacy from './about/diplomacy'
 
+import './about.css'
+
 const activeNavItem = {
     color: 'black',
     borderBottom: '4px solid black'
@@ -99,21 +101,21 @@ class About extends Component {
     return (
       <div className="container">
         <div className="display-1 text-center" style={{fontVariant: 'small-caps'}}>About <span style={{color: '#F59B45'}}>A.M.M.O.</span></div>
-          <div className="row">
-            <ul className="nav nav-pills justify-content-between col">
-              <li className="col nav-item">
-                <Link className="nav-link" style={this.state.mission} to="/about/mission" onMouseEnter={() => this.onMouseEnter('Mission')} onMouseLeave={() => this.onMouseLeave('Mission')}>Mission</Link>
-              </li>
-              <li className="col nav-item">
-                <Link className="nav-link" style={this.state.history} to="/about/history" onMouseEnter={() => this.onMouseEnter('History')} onMouseLeave={() => this.onMouseLeave('History')}>History</Link>
-              </li>
-              <li className="col nav-item">
-                <Link className="nav-link" style={this.state.rules} to="/about/rules"  onMouseEnter={() => this.onMouseEnter('Rules')} onMouseLeave={() => this.onMouseLeave('Rules')}>Rules</Link>
-              </li>
-              <li className="col nav-item">
-                <Link className="nav-link" style={this.state.diplomacy} to="/about/diplomacy" onMouseEnter={() => this.onMouseEnter('Diplomacy')} onMouseLeave={() => this.onMouseLeave('Diplomacy')}>Diplomacy</Link>
-              </li>
-            </ul>
+          <div className="container">
+              <ul className="nav nav-pills row justify-content-center">
+                <li className="nav-item text-center col-md-auto">
+                  <Link className="nav-link h5" style={this.state.mission} to="/about/mission" onMouseEnter={() => this.onMouseEnter('Mission')} onMouseLeave={() => this.onMouseLeave('Mission')}>Mission</Link>
+                </li>
+                <li className="nav-item text-center col-md-auto">
+                  <Link className="nav-link h5" style={this.state.history} to="/about/history" onMouseEnter={() => this.onMouseEnter('History')} onMouseLeave={() => this.onMouseLeave('History')}>History</Link>
+                </li>
+                <li className="nav-item text-center col-md-auto">
+                  <Link className="nav-link h5" style={this.state.rules} to="/about/rules"  onMouseEnter={() => this.onMouseEnter('Rules')} onMouseLeave={() => this.onMouseLeave('Rules')}>Rules</Link>
+                </li>
+                <li className="nav-item text-center col-md-auto">
+                  <Link className="nav-link h5" style={this.state.diplomacy} to="/about/diplomacy" onMouseEnter={() => this.onMouseEnter('Diplomacy')} onMouseLeave={() => this.onMouseLeave('Diplomacy')}>Diplomacy</Link>
+                </li>
+              </ul>
           </div>
         {this.props.children}
       </div>
