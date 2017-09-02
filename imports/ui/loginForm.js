@@ -26,13 +26,13 @@ export default class LoginForm extends Component {
   }
   render(){
     return(
-      <div className="container">
-          <div className="display-4 alert alert-danger text-center" style={{ fontFamily: 'Electrolize'}}>
+      <div className="d-flex align-items-center" style={{height: '100vh'}}>
+          <div className="display-4 alert alert-danger text-center flex-col" style={{ fontFamily: 'Electrolize'}}>
             <span className="fa fa-exclamation-triangle" aria-hidden="true"></span>
              Restricted Access
             <span className="fa fa-exclamation-triangle" aria-hidden="true"></span>
           </div>
-          <div className="card text-center row">
+          <div className="card text-center flex-col">
             <h2 className="card-header" style={{ fontFamily: 'Electrolize' }}><strong> <span style={{ fontSize: '150%' }}>A</span>rmitage <span style={{ fontSize: '150%' }}>M</span>obile <span style={{ fontSize: '150%' }}>M</span>ilitia <span style={{ fontSize: '150%' }}>O</span>ffensive Usage Only</strong></h2>
             <br/>
             <h4 className="card-title" style={{fontFamily: 'Electrolize'}}>A.M.M.O. Login</h4>
