@@ -19,6 +19,16 @@ class Signup extends Component {
   }
   componentWillMount(){
     if(Meteor.userId()) browserHistory.replace('/login')
+    document.body.style.backgroundImage = 'url("./assets/SCBunk2.jpg")'
+    document.body.style.backgroundRepeat = 'no-repeat'
+    document.body.style.backgroundSize = 'cover'
+    document.body.style.backgroundPosition = 'center'
+  }
+  componentWillUnmount(){
+    document.body.style.backgroundImage = ''
+    document.body.style.backgroundRepeat = ''
+    document.body.style.backgroundSize = ''
+    document.body.style.backgroundPosition = ''
   }
 mapSkills() {
   return tradeskills.map((tradeskill) => {
@@ -91,33 +101,45 @@ mapSkills() {
           </div>
           <form onSubmit={this.onSubmit.bind(this)} style={{paddingLeft: '15px', paddingRight: '15px'}}>
             <div className="row">
-              <div className="card card-outline-primary col-7">
+              <div className="card card-outline-primary col-7" style={{backgroundColor: 'rgba(255,255,255,.5)'}}>
                 <div className="card-block">
-                  <h2 className="card-title">Account Info</h2>
-                  <h6 className="card-subtitle mb-2 text-muted">Username, Password, and Email</h6>
-                  <div className="input-group">
-                    <div className="input-group-addon text-right" style={{width: '160px'}}>Username:</div>
-                    <input type="text" ref="username" className="form-control" placeholder="Please use your in-game handle" />
+                  <div className="row">
+                    <div className="card-title col-4 text-xs-left">Account Info</div>
+                    <div className="card-subtitle col-8 text-xs-right" style={{color: '#F59B45'}}>Username, Password, and Email</div>
+                  </div>
+                  <div className="form-group row" style={{marginRight: '0px'}}>
+                    <label className="col-sm-2 col-form-label text-right" >Username</label>
+                    <div className="col-sm-10">
+                      <input type="text" ref="username" className="form-control" placeholder="Please use your in-game handle"  style={{backgroundColor: 'rgba(255,255,255,.7)'}}/>
+                    </div>
                   </div>
                   <br/>
-                  <div className="input-group">
-                    <div className="input-group-addon text-right" style={{width: '160px'}}>Password:</div>
-                    <input type="password" ref="password" className="form-control" onChange={this.handleChange.bind(this)}/>
+                  <div className="form-group row" style={{marginRight: '0px'}}>
+                    <label className="col-sm-2 col-form-label text-right" >Password</label>
+                    <div className="col-sm-10">
+                      <input type="password" ref="password" className="form-control" onChange={this.handleChange.bind(this)}  style={{backgroundColor: 'rgba(255,255,255,.7)'}}/>
+                    </div>
                   </div>
                   {this.state.passwordPrompt ? <p className="card-text-muted text-right">Must be over 8 characters</p> : <br/>}
-                  <div className="input-group">
-                    <div className="input-group-addon text-right" style={{width: '160px'}}>Confirm Password:</div>
-                    <input type="password" ref="confirmPassword" className="form-control"/>
+                  <div className="form-group row" style={{marginRight: '0px'}}>
+                    <label className="col-sm-2 col-form-label text-right" >Confirm Password</label>
+                    <div className="col-sm-10">
+                      <input type="password" ref="confirmPassword" className="form-control"/>
+                    </div>
                   </div>
                   <br/>
-                  <div className="input-group">
-                    <div className="input-group-addon text-right" style={{width: '160px'}}>Email:</div>
-                    <input type="text" ref="email" className="form-control" placeholder="example@example.com" />
+                  <div className="form-group row" style={{marginRight: '0px'}}>
+                    <label className="col-sm-2 col-form-label text-right" >Email</label>
+                    <div className="col-sm-10">
+                      <input type="text" ref="email" className="form-control" placeholder="example@example.com" />
+                    </div>
                   </div>
                   <br/>
-                  <div className="input-group">
-                    <div className="input-group-addon text-right" style={{width: '160px'}}>Confirm Email:</div>
-                    <input type="text" ref="confirmEmail" className="form-control" placeholder="example@example.com"/>
+                  <div className="form-group row" style={{marginRight: '0px'}}>
+                    <label className="col-sm-2 col-form-label text-right" >Confirm Email</label>
+                    <div className="col-sm-10">
+                      <input type="text" ref="confirmEmail" className="form-control" placeholder="example@example.com"/>
+                    </div>
                   </div>
                   <br/>
                 </div>
@@ -128,8 +150,8 @@ mapSkills() {
             <div className="row">
               <div className="card card-outline-primary col-12">
                 <div className="card-block">
-                  <h4 className="display-4">Citizen Info</h4>
-                  <h6 className="card-subtitle mb-2 text-muted">Branch, Primary Trade, and Secondary Trade</h6>
+                  <h1 className="card-title">Citizen Info</h1>
+                  <h6 className="card-subtitle mb-2 text-muted">Name, Branch, Primary Trade, and Secondary Trade</h6>
                   <br/>
                   <h4>Name</h4>
                   <h6 className="text-muted">In-game name of character (<b>Not</b> your handle)</h6>

@@ -18,7 +18,7 @@ class Login extends Component {
   render() {
     if (!Meteor.userId()) {
       return (
-        <div className="d-flex align-items-center" style={{height: '100vh', width: '100vw'}}>
+        <div className="d-flex" style={{height: '95vh'}}>
           <LoginForm />
         </div>
       )

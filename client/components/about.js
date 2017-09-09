@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import { Link, browserHistory } from 'react-router'
 
-
 import Mission from './about/mission'
 import History from './about/history'
 import Rules from './about/rules'
 import Diplomacy from './about/diplomacy'
-
-import './about.css'
 
 const activeNavItem = {
     color: 'black',
