@@ -103,9 +103,9 @@ mapSkills() {
             <div className="row">
               <div className="card card-outline-primary col-7" style={{backgroundColor: 'rgba(255,255,255,.5)'}}>
                 <div className="card-block">
-                  <div className="row">
-                    <div className="card-title col-4 text-xs-left">Account Info</div>
-                    <div className="card-subtitle col-8 text-xs-right" style={{color: '#F59B45'}}>Username, Password, and Email</div>
+                  <div className="row align-items-end" style={{ marginBottom: '0px'}}>
+                    <div className="h1 col-4 text-left" style={{marginBottom: '0px', textShadow: '1px 1px 3px #F59B45'}}>Account Info</div>
+                    <div className="h4 col-8 text-right" style={{color: '#F59B45', textShadow: '1px 1px 3px black'}}>Username, Password, and Email</div>
                   </div>
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Username</label>
