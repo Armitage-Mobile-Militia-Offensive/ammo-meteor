@@ -52,12 +52,21 @@ class About extends Component {
     }
   }
   componentWillMount(){
-      this.navSwitching()
+    this.navSwitching()
+    document.body.style.backgroundImage = 'url("./assets/Locked.jpg")'
+    document.body.style.backgroundRepeat = 'no-repeat'
+    document.body.style.backgroundAttachment = 'fixed'
+    document.body.style.backgroundSize = 'cover'
+    document.body.style.backgroundPosition = 'center'
   }
-  componentWillReceiveProps(){
-      this.navSwitching()
+  componentWillUnmount(){
+    this.navSwitching()
+    document.body.style.backgroundImage = ''
+    document.body.style.backgroundRepeat = ''
+    document.body.style.backgroundAttachment = ''
+    document.body.style.backgroundSize = ''
+    document.body.style.backgroundPosition = ''
   }
-
   onMouseEnter = (link) => {
       switch (link) {
           case "Mission":

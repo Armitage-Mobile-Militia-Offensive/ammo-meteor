@@ -12,6 +12,20 @@ export default class LoginForm extends Component {
       user: ''
     }
   }
+  componentWillMount(){
+    document.body.style.backgroundImage = 'url("./assets/Locked.jpg")'
+    document.body.style.backgroundRepeat = 'no-repeat'
+    document.body.style.backgroundAttachment = 'fixed'
+    document.body.style.backgroundSize = 'cover'
+    document.body.style.backgroundPosition = 'center'
+  }
+  componentWillUnmount(){
+    document.body.style.backgroundImage = ''
+    document.body.style.backgroundRepeat = ''
+    document.body.style.backgroundAttachment = ''
+    document.body.style.backgroundSize = ''
+    document.body.style.backgroundPosition = ''
+  }
   onSubmit(e) {
     e.preventDefault()
     let email = this.refs.email.value.toLowerCase().trim()
@@ -27,13 +41,13 @@ export default class LoginForm extends Component {
   render(){
     return(
       <div  className="align-self-center mx-auto" >
-          <div className="alert alert-danger text-center display-4 d-flex justify-content-between" style={{ fontFamily: 'Electrolize'}}>
+          <div className="alert alert-danger text-center display-4 d-flex justify-content-between" style={{ fontFamily: 'Electrolize', backgroundColor: 'rgba(255,0,0,.5)', color: 'white'}}>
             <span className="fa fa-exclamation-triangle" aria-hidden="true"></span>
              Restricted Access
             <span className="fa fa-exclamation-triangle" aria-hidden="true"></span>
           </div>
-          <div className="card text-center">
-            <h2 className="card-header" style={{ fontFamily: 'Electrolize' }}><strong> <span style={{ fontSize: '150%' }}>A</span>rmitage <span style={{ fontSize: '150%' }}>M</span>obile <span style={{ fontSize: '150%' }}>M</span>ilitia <span style={{ fontSize: '150%' }}>O</span>ffensive Usage Only</strong></h2>
+          <div id="glasscard" className="card text-center glass" style={{backgroundColor: 'rgba(0,0,0,.5)', overflow: 'hidden', color: 'white'}}>
+            <h2 className="" style={{ fontFamily: 'Electrolize', color: 'white', backgroundColor: 'rgba(0,0,0,.5)' }}><strong> <span style={{ fontSize: '125%' }}>A</span>rmitage <span style={{ fontSize: '125%' }}>M</span>obile <span style={{ fontSize: '125%' }}>M</span>ilitia <span style={{ fontSize: '125%' }}>O</span>ffensive Usage Only</strong></h2>
             <br/>
             <h4 className="card-title" style={{fontFamily: 'Electrolize'}}>A.M.M.O. Login</h4>
             <p className="card-text">For authorized users, Welcome. Please enter your Credentials</p>
@@ -42,14 +56,14 @@ export default class LoginForm extends Component {
             </div>
             <form onSubmit={this.onSubmit.bind(this)} className="row justify-content-sm-center">
               <div className="col-10 form-group row justify-content-md-center" style={{marginRight: '0px'}}>
-                <label className="col-sm-3 col-form-label text-right" >Email</label>
+                <label className="col-sm-3 col-form-label text-right" ><strong>Email</strong></label>
                 <div className="col-sm-9">
                   <input type="text" ref="email" className="form-control" />
                 </div>
               </div>
               <br/>
               <div className="col-10 form-group row justify-content-sm-center" style={{marginRight: '0px'}}>
-                <label className="col-sm-3 col-form-label text-right" >Password</label>
+                <label className="col-sm-3 col-form-label text-right" ><strong>Password</strong></label>
                 <div className="col-sm-9">
                   <input type="password" ref="password" className="form-control" />
                 </div>
@@ -62,8 +76,8 @@ export default class LoginForm extends Component {
             </form>
             <Link to="/signup" className="row justify-content-sm-center">Need a Account?</Link>
             <br/>
-            <div className="card-footer text-muted">
-              <ClockUTC/>
+            <div className="card-footer" style={{backgroundColor: 'rgba(0,0,0,.5)', color: 'white'}}>
+              <ClockUTC />
             </div>
           </div>
       </div>

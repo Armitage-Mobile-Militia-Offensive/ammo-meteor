@@ -116,21 +116,25 @@ export class Nav extends Component {
           if (Meteor.userId()) {
               return (
                   <div className="nav-item  dropdown" style={{ color: 'white' }} >
-                      <span className="nav-link dropdown-toggle" id="navMemberMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ navItem }}>{this.props.user ? this.props.user.username : 'Loading...'}</span>
-                      <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navMemberMenu">
-                          <Link to="/profile/edit" className="dropdown-item">Edit Profile</Link>
-                          <span className="dropdown-item" onClick={() => Accounts.logout((err) => { if(err){ console.log('Logout Error: ', err) } })}>Logout</span>
-                      </div>
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    This dropdown's menu is right-aligned
+                    </button>
+                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navMemberMenu">
+                    <Link to="/profile/edit" className="dropdown-item">Edit Profile</Link>
+                    <span className="dropdown-item" onClick={() => Accounts.logout((err) => { if(err){ console.log('Logout Error: ', err) } })}>Logout</span>
+                    </div>
                   </div>
               );
           } else {
               return (
-                  <span className="nav-item dropdown" style={{ color: 'white' }} >
-                      <span className="nav-link dropdown-toggle nav-text" id="navGuestMenu" data-toggle="dropdown" style={{navItem}}>Welcome Guest</span>
-                      <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navGuestMenu">
-                        <Link to="/login" className="dropdown-item">Login / Sign-up page</Link>
-                      </div>
-                  </span>
+                  <div className="btn-group" style={{ color: 'white', backgroundColor: 'rgba(0,0,0,0)' }} >
+                    <button type="button" className="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ color: 'white', backgroundColor: 'rgba(0,0,0,.5)', textDecoration: 'none' }}>
+                      Welcome Guest
+                    </button>
+                    <div className="dropdown-menu dropdown-menu-right" style={{backgroundColor: 'rgba(0,0,0,.5)', color: 'white'}}>
+                      <Link to="/login" className="dropdown-item" style={{backgroundColor: 'rgba(0,0,0,0)', color: 'white', paddingRight: '2px'}} type="button">Login</Link>
+                    </div>
+                  </div>
               );
           }
       }
@@ -156,7 +160,7 @@ export class Nav extends Component {
                     </li>
                 </ul>
                 {renderProfileDropdown()}
-          
+
           </nav>
       )
   }

@@ -16,6 +16,7 @@
     "js-md5": "^0.4.2",
     "jwt-decode": "^2.2.0",
     "meteor-node-stubs": "~0.2.4",
+    "radium": "^0.19.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router": "^3.0.2",

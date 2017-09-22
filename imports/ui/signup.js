@@ -101,7 +101,7 @@ mapSkills() {
           </div>
           <form onSubmit={this.onSubmit.bind(this)} style={{paddingLeft: '15px', paddingRight: '15px'}}>
             <div className="row">
-              <div className="card card-outline-primary col-7" style={{backgroundColor: 'rgba(255,255,255,.5)'}}>
+              <div className="card card-outline-primary col-7" style={{backgroundColor: 'rgba(0,0,0,.5)', color: 'white'}}>
                 <div className="card-block">
                   <div className="row align-items-end" style={{ marginBottom: '0px'}}>
                     <div className="h1 col-4 text-left" style={{marginBottom: '0px', textShadow: '1px 1px 3px #F59B45'}}>Account Info</div>
@@ -110,35 +110,35 @@ mapSkills() {
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Username</label>
                     <div className="col-sm-10">
-                      <input type="text" ref="username" className="form-control" placeholder="Please use your in-game handle"  style={{backgroundColor: 'rgba(255,255,255,.7)'}}/>
+                      <input type="text" ref="username" className="form-control" placeholder="Please use your in-game handle"  style={{backgroundColor: 'white'}}/>
                     </div>
                   </div>
                   <br/>
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Password</label>
                     <div className="col-sm-10">
-                      <input type="password" ref="password" className="form-control" onChange={this.handleChange.bind(this)}  style={{backgroundColor: 'rgba(255,255,255,.7)'}}/>
+                      <input type="password" ref="password" className="form-control" onChange={this.handleChange.bind(this)}  style={{backgroundColor: 'white'}}/>
                     </div>
                   </div>
                   {this.state.passwordPrompt ? <p className="card-text-muted text-right">Must be over 8 characters</p> : <br/>}
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Confirm Password</label>
                     <div className="col-sm-10">
-                      <input type="password" ref="confirmPassword" className="form-control"/>
+                      <input type="password" ref="confirmPassword" className="form-control" style={{backgroundColor: 'white'}}/>
                     </div>
                   </div>
                   <br/>
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Email</label>
                     <div className="col-sm-10">
-                      <input type="text" ref="email" className="form-control" placeholder="example@example.com" />
+                      <input type="text" ref="email" className="form-control" placeholder="example@example.com" style={{backgroundColor: 'white'}} />
                     </div>
                   </div>
                   <br/>
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Confirm Email</label>
                     <div className="col-sm-10">
-                      <input type="text" ref="confirmEmail" className="form-control" placeholder="example@example.com"/>
+                      <input type="text" ref="confirmEmail" className="form-control" placeholder="example@example.com" style={{backgroundColor: 'white'}}/>
                     </div>
                   </div>
                   <br/>
@@ -148,9 +148,9 @@ mapSkills() {
             </div>
             <br/>
             <div className="row">
-              <div className="card card-outline-primary col-12">
+              <div className="card card-outline-primary col-12" style={{backgroundColor: 'rgba(0,0,0,.5)', color: 'white'}}>
                 <div className="card-block">
-                  <h1 className="card-title">Citizen Info</h1>
+                  <h1 className="card-title" style={{ textShadow: '1px 1px 3px #F59B45'}}>Citizen Info</h1>
                   <h6 className="card-subtitle mb-2 text-muted">Name, Branch, Primary Trade, and Secondary Trade</h6>
                   <br/>
                   <h4>Name</h4>
