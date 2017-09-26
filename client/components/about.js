@@ -22,7 +22,7 @@ const navItem = {
     textDecoration: 'none'
 }
 
-class About extends Component {
+export default class About extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -33,9 +33,14 @@ class About extends Component {
       diplomacy: navItem
     }
   }
-  navSwitching = () => {
+  navSwitching () {
     switch(browserHistory.getCurrentLocation().pathname){
       case "/about/mission":
+          document.body.style.backgroundImage = 'url("./assets/Locked.jpg")'
+          document.body.style.backgroundRepeat = 'no-repeat'
+          document.body.style.backgroundAttachment = 'fixed'
+          document.body.style.backgroundSize = 'cover'
+          document.body.style.backgroundPosition = 'center'
           return this.setState({mission: activeNavItem, rules: navItem, diplomacy: navItem, history: navItem })
           break
       case "/about/history":
@@ -51,21 +56,8 @@ class About extends Component {
           return this.setState({mission: activeNavItem, rules: navItem, diplomacy: navItem, history: navItem })
     }
   }
-  componentWillMount(){
+  componentWillReceiveProps(){
     this.navSwitching()
-    document.body.style.backgroundImage = 'url("./assets/Locked.jpg")'
-    document.body.style.backgroundRepeat = 'no-repeat'
-    document.body.style.backgroundAttachment = 'fixed'
-    document.body.style.backgroundSize = 'cover'
-    document.body.style.backgroundPosition = 'center'
-  }
-  componentWillUnmount(){
-    this.navSwitching()
-    document.body.style.backgroundImage = ''
-    document.body.style.backgroundRepeat = ''
-    document.body.style.backgroundAttachment = ''
-    document.body.style.backgroundSize = ''
-    document.body.style.backgroundPosition = ''
   }
   onMouseEnter = (link) => {
       switch (link) {
@@ -105,8 +97,8 @@ class About extends Component {
   }
   render(){
     return (
-      <div className="container">
-        <div className="display-1 text-center" style={{fontVariant: 'small-caps'}}>About <span style={{color: '#F59B45'}}>A.M.M.O.</span></div>
+      <div className="container" style={{ background: `url(${"./assets/Locked.jpg"})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', height: '100vh', width: '100vw' }}>
+        <div className="display-1 text-center" style={{fontVariant: 'small-caps'}}>About<span style={{color: '#F59B45'}}>A.M.M.O.</span></div>
           <div className="container">
               <ul className="nav nav-pills row justify-content-center">
                 <li className="nav-item text-center col-md-auto">
@@ -128,5 +120,3 @@ class About extends Component {
     )
   }
 }
-
-export default About;
