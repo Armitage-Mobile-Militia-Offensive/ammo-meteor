@@ -7,18 +7,18 @@ import Rules from './about/rules'
 import Diplomacy from './about/diplomacy'
 
 const activeNavItem = {
-    color: 'black',
+    color: '#F59B45',
     borderBottom: '4px solid black'
 }
 
 const hoveredItem = {
-    color: 'black',
+    color: 'white',
     textDecoration: 'none',
     borderBottom: '4px solid #F59B45'
 }
 
 const navItem = {
-    color: 'black',
+    color: 'white',
     textDecoration: 'none'
 }
 
@@ -36,11 +36,6 @@ export default class About extends Component {
   navSwitching () {
     switch(browserHistory.getCurrentLocation().pathname){
       case "/about/mission":
-          document.body.style.backgroundImage = 'url("./assets/Locked.jpg")'
-          document.body.style.backgroundRepeat = 'no-repeat'
-          document.body.style.backgroundAttachment = 'fixed'
-          document.body.style.backgroundSize = 'cover'
-          document.body.style.backgroundPosition = 'center'
           return this.setState({mission: activeNavItem, rules: navItem, diplomacy: navItem, history: navItem })
           break
       case "/about/history":
@@ -55,6 +50,19 @@ export default class About extends Component {
       default:
           return this.setState({mission: activeNavItem, rules: navItem, diplomacy: navItem, history: navItem })
     }
+  }
+  componentWillMount(){
+    document.body.style.background = `url(${"../assets/ScreenShot0010.jpg"})`
+    document.body.style.backgroundRepeat = 'no-repeat'
+    document.body.style.backgroundSize = 'cover'
+    document.body.style.backgroundPosition = 'center'
+    document.body.style.width = '100%'
+  }
+  componentWillUnmount(){
+    document.body.style.backgroundImage = ''
+    document.body.style.backgroundRepeat = ''
+    document.body.style.backgroundSize = ''
+    document.body.style.backgroundPosition = ''
   }
   componentWillReceiveProps(){
     this.navSwitching()
@@ -98,9 +106,9 @@ export default class About extends Component {
   render(){
     return (
       <div className="container" style={{ background: `url(${"./assets/Locked.jpg"})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', height: '100vh', width: '100vw' }}>
-        <div className="display-1 text-center" style={{fontVariant: 'small-caps'}}>About<span style={{color: '#F59B45'}}>A.M.M.O.</span></div>
+        <div className="display-1 text-center" style={{fontVariant: 'small-caps', color: 'white'}}>About<span style={{color: '#F59B45'}}>A.M.M.O.</span></div>
           <div className="container">
-              <ul className="nav nav-pills row justify-content-center">
+              <ul className="nav nav-pills row justify-content-center" style={{color: 'white'}}>
                 <li className="nav-item text-center col-md-auto">
                   <Link className="nav-link h5" style={this.state.mission} to="/about/mission" onMouseEnter={() => this.onMouseEnter('Mission')} onMouseLeave={() => this.onMouseLeave('Mission')}>Mission</Link>
                 </li>

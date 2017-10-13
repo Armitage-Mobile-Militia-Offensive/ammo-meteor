@@ -1,8 +1,12 @@
 import React from 'react';
 
 const Rules = () => {
+  // document.body.style.backgroundImage = 'url("../assets/ScreenShot0148.jpg")'
+  // document.body.style.backgroundRepeat = 'no-repeat'
+  // document.body.style.backgroundSize = 'cover'
+  // document.body.style.backgroundPosition = 'center'
   return (
-    <div className="container">
+    <div className="container" style={{color: 'white', maxHeight: '500px'}}>
       <div className="display-3 text-right">Rules</div>
       <ul className="list-unstyled">
         <li className="list-item">Stow your differences in comms</li>

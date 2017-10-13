@@ -2,7 +2,7 @@ import React from 'react';
 
 const Mission = () => {
   return (
-    <div className="">
+    <div className="" style={{color: 'white'}}>
       <h3>Who we are:</h3>
       <p>We are a collection of individuals from all corners of human space and proffessions. Collectively we consider ourselves a PMC (Private Miltiary Corperation) however we have members in disciplines outside pure combat.</p>
       <h3>Home system:</h3>
