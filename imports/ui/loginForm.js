@@ -56,14 +56,14 @@ export default class LoginForm extends Component {
             </div>
             <form onSubmit={this.onSubmit.bind(this)} className="row justify-content-sm-center">
               <div className="col-10 form-group row justify-content-md-center" style={{marginRight: '0px'}}>
-                <label className="col-sm-3 col-form-label text-right" ><strong>Email</strong></label>
+                <label className="col-sm-3 col-form-label text-right" style={{fontSize: '125%' }} >Email</label>
                 <div className="col-sm-9">
                   <input type="text" ref="email" className="form-control" />
                 </div>
               </div>
               <br/>
               <div className="col-10 form-group row justify-content-sm-center" style={{marginRight: '0px'}}>
-                <label className="col-sm-3 col-form-label text-right" ><strong>Password</strong></label>
+                <label className="col-sm-3 col-form-label text-right" style={{fontSize: '125%' }} >Password</label>
                 <div className="col-sm-9">
                   <input type="password" ref="password" className="form-control" />
                 </div>

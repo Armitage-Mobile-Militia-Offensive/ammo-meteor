@@ -1,9 +1,8 @@
 import React from 'react'
-import { Parallax } from 'react-parallax'
 
 const History = () => {
   return (
-    <Parallax bgImage="....//assets/ScreenShot0010.jpg" strength={200} style={{color: 'white', textShadow: '2px 2px 10px black'}}>
+    <div style={{color: 'white', textShadow: '2px 2px 10px black'}}>
       <p>AMMO was born from the ashes of Orion Terra-systems, a corporation based on Armitage that helped to prepare the planet for the large-scale agriculture it was becoming known for. At that time, the first elements of the org were part of the corporation’s Mobile Militia Division – essentially a security force whose main focus was protecting the company’s facilities and headquarters on Armitage and its interests in the system as a whole. When the Vanduul were first recognized as a true threat rather than just another group of pirate raiders, Orion Terra-systems’ leadership made an unusual decision – the Final Order. Rather than evacuate to protect corporate assets and profits, they asked all able personnel to hold fast, protecting the escaping farmers and other civilians. The Mobile Militia Division made up a significant portion of the “civilian” ships that stood alongside the Peacekeeper Security forces in the desperate defense of the planet that helped to save the lives of the last evacuees of the planet.</p>
 
       <p>In the chaos of the aftermath, it became clear to the Mobile Militia’s surviving commanders that Orion Terra-Systems, as a company, had not survived. They were a corporate security division without a corporation to secure. Understanding the sacrifice that had been made, however, most of the surviving commanders chose to continue the mission they were given – to protect civilian refugees from Armitage, and give them the means to escape to nearby systems that were, as of yet, not threatened by the Vanduul. Gradually the disparate ship captains and squadrons assembled at their old rendezvous points near the edge of the Caliban system. The Mobile Militia used surviving corporate freighters as impromptu supply depots, hospitals, and even temporary shelters for refugees as they arranged passage on transport ships bound for safer places in the galaxy.</p>
@@ -14,9 +13,9 @@ const History = () => {
 
       <p>In recent months, new developments have slightly altered AMMO’s focus, however. After years of subsistence operations, rumors reached the Director’s ears of a prize worth focusing on. After being captured following a devastating attack on a MISC ship dealership protected by an AMMO security contract, a notorious scoundrel named [REDACTED] offered to reveal the location of a lost Idris-class frigate — believed to have been lost sometime shortly after the fall of Caliban — in exchange for leniency in dealings with the Advocacy. With most investigations of the rumor leaning towards its validity, the Director has renewed the traditional council of captains, gathering a group of experts in intelligence, shipboard security, and fleet maneuvers. It’s clear that AMMO intends to find this “lost ship”, even if it takes a fleet wide mobilization on a scale not seen since Orion and Caliban. A new flagship may be in store for the Armitage Mobile Militia Offensive – and with it, perhaps a new course — back towards the dangerous edges of the UEE, where protection is needed most.</p>
 
-      <div className="text-center display-2" style={{fontVariant: 'small-caps', color: '#F59B45'}}>The Final <span style={{textShadow: '1px 1px 10px black'}}>Order Stands</span></div>
+      <div className="text-center display-2" style={{fontVariant: 'small-caps', color: '#F59B45', textShadow: '1px 1px 10px black' }}>The Final Order Stands </div>
       <div className="hr"></div>
-    </Parallax>
+    </div>
   );
 };
 

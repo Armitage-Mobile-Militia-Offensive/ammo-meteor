@@ -29,6 +29,7 @@ export default class About extends Component {
       subPage: 'Mission',
       mission: activeNavItem,
       rules: navItem,
+      ranks: navItem,
       history: navItem,
       diplomacy: navItem
     }
@@ -36,28 +37,31 @@ export default class About extends Component {
   navSwitching () {
     switch(browserHistory.getCurrentLocation().pathname){
       case "/about/mission":
-          return this.setState({mission: activeNavItem, rules: navItem, diplomacy: navItem, history: navItem })
+          return this.setState({mission: activeNavItem, rules: navItem, ranks: navItem, diplomacy: navItem, history: navItem })
           break
       case "/about/history":
-          return this.setState({mission: navItem, rules: navItem, diplomacy: navItem, history: activeNavItem })
+          return this.setState({mission: navItem, rules: navItem, ranks: navItem, diplomacy: navItem, history: activeNavItem })
           break
       case "/about/rules":
-          return this.setState({mission: navItem, rules: activeNavItem, diplomacy: navItem, history: navItem })
+          return this.setState({mission: navItem, rules: activeNavItem, ranks: navItem, diplomacy: navItem, history: navItem })
+          break
+      case "/about/ranks":
+          return this.setState({mission: navItem,rules: navItem, ranks: activeNavItem, diplomacy: navItem, history: navItem })
           break
       case "/about/diplomacy":
-          return this.setState({mission: navItem, rules: navItem, diplomacy: activeNavItem, history: navItem })
+          return this.setState({mission: navItem, rules: navItem, ranks: navItem, diplomacy: activeNavItem, history: navItem })
           break
       default:
-          return this.setState({mission: activeNavItem, rules: navItem, diplomacy: navItem, history: navItem })
+          return this.setState({mission: activeNavItem, rules: navItem, ranks: navItem, diplomacy: navItem, history: navItem })
     }
   }
   componentWillMount(){
+    this.navSwitching()
     document.body.style.background = `url(${"../assets/ScreenShot0010.jpg"})`
-    document.body.style.backgroundRepeat = 'no-repeat'
-    document.body.style.backgroundSize = 'cover'
+    document.body.style.backgroundRepeat = 'repeat'
+    document.body.style.backgroundSize = 'auto'
     document.body.style.backgroundPosition = 'center'
-    document.body.style.width = '100%'
-  }
+   }
   componentWillUnmount(){
     document.body.style.backgroundImage = ''
     document.body.style.backgroundRepeat = ''
@@ -78,11 +82,14 @@ export default class About extends Component {
           case "Rules":
               (browserHistory.getCurrentLocation().pathname === '/about/rules') ? null : this.setState({rules: hoveredItem})
               break
+          case "Ranks":
+              (browserHistory.getCurrentLocation().pathname === '/about/ranks') ? null : this.setState({ranks: hoveredItem})
+              break
           case "Diplomacy":
               (browserHistory.getCurrentLocation().pathname === '/about/diplomacy') ? null : this.setState({diplomacy: hoveredItem})
               break
           default:
-              return this.setState({mission: navItem, rules: navItem, diplomacy: navItem, history: navItem})
+              return this.setState({mission: navItem, rules: navItem,ranks: navItem, diplomacy: navItem, history: navItem})
       }
   }
   onMouseLeave = (link) => {
@@ -96,11 +103,14 @@ export default class About extends Component {
           case "Rules":
               (browserHistory.getCurrentLocation().pathname === '/about/rules') ? null : this.setState({rules: navItem})
               break
+          case "Ranks":
+              (browserHistory.getCurrentLocation().pathname === '/about/ranks') ? null : this.setState({ranks: navItem})
+              break
           case "Diplomacy":
               (browserHistory.getCurrentLocation().pathname === '/about/diplomacy') ? null : this.setState({diplomacy: navItem})
               break
           default:
-              return this.setState({mission: navItem, rules: navItem, diplomacy: navItem, history: navItem});
+              return this.setState({mission: navItem, rules: navItem,ranks: navItem, diplomacy: navItem, history: navItem});
       }
   }
   render(){
@@ -117,6 +127,9 @@ export default class About extends Component {
                 </li>
                 <li className="nav-item text-center col-md-auto">
                   <Link className="nav-link h5" style={this.state.rules} to="/about/rules"  onMouseEnter={() => this.onMouseEnter('Rules')} onMouseLeave={() => this.onMouseLeave('Rules')}>Rules</Link>
+                </li>
+                <li className="nav-item text-center col-md-auto">
+                  <Link className="nav-link h5" style={this.state.ranks} to="/about/ranks"  onMouseEnter={() => this.onMouseEnter('Ranks')} onMouseLeave={() => this.onMouseLeave('Ranks')}>Ranks</Link>
                 </li>
                 <li className="nav-item text-center col-md-auto">
                   <Link className="nav-link h5" style={this.state.diplomacy} to="/about/diplomacy" onMouseEnter={() => this.onMouseEnter('Diplomacy')} onMouseLeave={() => this.onMouseLeave('Diplomacy')}>Diplomacy</Link>

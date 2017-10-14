@@ -115,8 +115,8 @@ export class Nav extends Component {
       let renderProfileDropdown = () => {
           if (Meteor.userId()) {
               return (
-                  <div className="nav-item  dropdown" style={{ color: 'white' }} >
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div className="nav-item  dropdown" style={{ backgroundColor: 'rgba(0,0,0,0)' }} >
+                    <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     This dropdown's menu is right-aligned
                     </button>
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navMemberMenu">
@@ -127,12 +127,12 @@ export class Nav extends Component {
               );
           } else {
               return (
-                  <div className="btn-group" style={{ color: 'white', backgroundColor: 'rgba(0,0,0,0)' }} >
-                    <button type="button" className="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ color: 'white', backgroundColor: 'rgba(0,0,0,.5)', textDecoration: 'none' }}>
+                  <div className="btn-group" style={{ backgroundColor: 'rgba(0,0,0,0)' }} >
+                    <button className="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ color: 'white', backgroundColor: 'rgba(0,0,0,0)', textDecoration: 'none' }}>
                       Welcome Guest
                     </button>
-                    <div className="dropdown-menu dropdown-menu-right" style={{backgroundColor: 'rgba(0,0,0,.5)', color: 'white'}}>
-                      <Link to="/login" className="dropdown-item" style={{backgroundColor: 'rgba(0,0,0,0)', color: 'white', paddingRight: '2px'}} type="button">Login</Link>
+                    <div className="dropdown-menu dropdown-menu-right" >
+                      <Link to="/login" className="dropdown-item" style={{ paddingRight: '2px' }} >Login</Link>
                     </div>
                   </div>
               );

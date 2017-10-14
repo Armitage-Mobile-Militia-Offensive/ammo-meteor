@@ -8,6 +8,7 @@ import About from '../../client/components/about'
 import Mission from '../../client/components/about/mission'
 import History from '../../client/components/about/history'
 import Rules from '../../client/components/about/rules'
+import Ranks from '../../client/components/about/ranks'
 import Diplomacy from '../../client/components/about/diplomacy'
 
 import Fleet from '../../client/components/fleet'
@@ -47,6 +48,7 @@ export const routes = (
           <Route path="/about/mission" component={Mission}/>
           <Route path="/about/history" component={History}/>
           <Route path="/about/rules" component={Rules}/>
+          <Route path="/about/ranks" component={Ranks}/>
           <Route path="/about/diplomacy" component={Diplomacy}/>
         </Route>
         <Route path="/floatila" component={Floatila}/>
