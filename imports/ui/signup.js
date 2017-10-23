@@ -93,7 +93,6 @@ mapSkills() {
     )
   }
   render() {
-    console.log(this.state)
       return (
         <div className="container-fluid">
           <div className="alert alert-info text-center" role="alert">
@@ -110,35 +109,35 @@ mapSkills() {
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Username</label>
                     <div className="col-sm-10">
-                      <input type="text" ref="username" className="form-control" placeholder="Please use your in-game handle"  style={{backgroundColor: 'white'}}/>
+                      <input type="text" ref="username" className="form-control" placeholder="Please use your in-game handle"  style={{backgroundColor: 'rgba(255,255,255,.5)', color: 'black'}}/>
                     </div>
                   </div>
                   <br/>
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Password</label>
                     <div className="col-sm-10">
-                      <input type="password" ref="password" className="form-control" onChange={this.handleChange.bind(this)}  style={{backgroundColor: 'white'}}/>
+                      <input type="password" ref="password" className="form-control" onChange={this.handleChange.bind(this)}  style={{backgroundColor: 'rgba(255,255,255,.5)', color: 'black'}}/>
                     </div>
                   </div>
                   {this.state.passwordPrompt ? <p className="card-text-muted text-right">Must be over 8 characters</p> : <br/>}
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Confirm Password</label>
                     <div className="col-sm-10">
-                      <input type="password" ref="confirmPassword" className="form-control" style={{backgroundColor: 'white'}}/>
+                      <input type="password" ref="confirmPassword" className="form-control" style={{backgroundColor: 'rgba(255,255,255,.5)'}}/>
                     </div>
                   </div>
                   <br/>
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Email</label>
                     <div className="col-sm-10">
-                      <input type="text" ref="email" className="form-control" placeholder="example@example.com" style={{backgroundColor: 'white'}} />
+                      <input type="text" ref="email" className="form-control" placeholder="example@example.com" style={{backgroundColor: 'rgba(255,255,255,.5)'}} />
                     </div>
                   </div>
                   <br/>
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Confirm Email</label>
                     <div className="col-sm-10">
-                      <input type="text" ref="confirmEmail" className="form-control" placeholder="example@example.com" style={{backgroundColor: 'white'}}/>
+                      <input type="text" ref="confirmEmail" className="form-control" placeholder="example@example.com" style={{backgroundColor: 'rgba(255,255,255,.5)'}}/>
                     </div>
                   </div>
                   <br/>
@@ -155,9 +154,11 @@ mapSkills() {
                   <br/>
                   <h4>Name</h4>
                   <h6 className="text-muted">In-game name of character (<b>Not</b> your handle)</h6>
-                  <div className="input-group row container">
-                    <div className="input-group-addon text-right" style={{width: '160px'}}>Full Name:</div>
-                    <input type="text" ref="fullName" className="form-control col-6" placeholder="Last Name, First Name" />
+                  <div className="form-group row" style={{marginRight: '0px'}}>
+                    <label className="col-sm-2 col-form-label text-right" >Full Name:</label>
+                    <div className="col-sm-10">
+                      <input type="text" ref="fullName" className="form-control" placeholder="Last Name, First Name" style={{backgroundColor: 'rgba(255,255,255,.5)'}}/>
+                    </div>
                   </div>
                   <br/>
                   <h4>Branch</h4>
