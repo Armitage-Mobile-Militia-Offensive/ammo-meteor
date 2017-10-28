@@ -6,7 +6,40 @@ import { Meteor } from 'meteor/meteor'
 import { Accounts } from 'meteor/accounts-base'
 import uuidv4 from 'uuid/v4'
 
-const tradeskills = ['Pilot - Fighter', 'Pilot', 'Engineer', 'Hauler', 'Explorer', 'Mining', 'Mercenary', 'Combat', 'Mechanic', 'Diplomat', 'Ambassador', 'Broker', 'Salesman', 'Recruiter', 'Racer', 'Scientist', 'Analyst']
+const tradeskills = ['Pilot - Fighter', 'Pilot - Cargo', 'Pilot - Hauler', 'Pilot - Passanger Transport', 'Pilot - Exploration', 'Pilot - Mining', 'Pilot - Racer', 'Engineering - Flight Crew', 'Engineering - Ground Crew', 'Engineering - Racer (Specialist Aerospace)', 'Engineering - Racer (Specialist Ground Vehicle)', 'Engineering - Mining', 'Diplomat', 'Ambassador', 'Broker', 'Salesman', 'Recruiter', 'Scientist', 'Analyst', 'Explorer', 'Mercenaries', 'Medics', 'Ground Vehicle Operators']
+
+// Piloting:
+// Pilot - Fighter
+// Pilot - Cargo
+// Pilot - Hauler
+// Pilot - Passanger Transport
+// Pilot - Exploration
+// Pilot - Mining
+// Pilot - Racer
+//
+// Engineering:
+// Engineering - Flight Crew
+// Engineering - Ground Crew
+// Engineering - Racer (Specialist Aerospace)
+// Engineering - Racer (Specialist Ground Vehicle)
+// Engineering - Mining
+//
+// External Relations:
+// > Diplomat
+// > Ambassador
+// > Broker
+// > Salesman
+// > Recruiter
+//
+// Research and Analytics:
+// > Scientist
+// > Analyst
+// > Explorer
+//
+// Ground/Combat Relations:
+// > Mercenaries
+// > Medics
+// > Ground Vehicle Operators
 
 class Signup extends Component {
   constructor(props) {
@@ -32,9 +65,13 @@ class Signup extends Component {
   }
 mapSkills() {
   return tradeskills.map((tradeskill) => {
-    return (
-      <option value={tradeskill} key={tradeskill}>{tradeskill}</option>
-    )
+    if(false){
+
+    } else {
+      return (
+        <option value={tradeskill} key={tradeskill}>{tradeskill}</option>
+      )
+    }
   })
 }
   onSubmit(e) {
@@ -103,41 +140,41 @@ mapSkills() {
               <div className="card card-outline-primary col-7" style={{backgroundColor: 'rgba(0,0,0,.5)', color: 'white'}}>
                 <div className="card-block">
                   <div className="row align-items-end" style={{ marginBottom: '0px'}}>
-                    <div className="h1 col-4 text-left" style={{marginBottom: '0px', textShadow: '1px 1px 3px #F59B45'}}>Account Info</div>
-                    <div className="h4 col-8 text-right" style={{color: '#F59B45', textShadow: '1px 1px 3px black'}}>Username, Password, and Email</div>
+                    <div className="h1 col-xs-12 col-lg-4 text-left" style={{marginBottom: '0px'}}>Account Info</div>
+                    <div className="h4 col-xs-12 col-lg-8 text-right d-none d-lg-block" style={{color: '#F59B45'}}>Username, Password, and Email</div>
                   </div>
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Username</label>
                     <div className="col-sm-10">
-                      <input type="text" ref="username" className="form-control" placeholder="Please use your in-game handle"  style={{backgroundColor: 'rgba(255,255,255,.5)', color: 'black'}}/>
+                      <input type="text" ref="username" className="form-control" placeholder="Please use your in-game handle"  style={{backgroundColor: 'rgba(255,255,255,.8)', color: 'black'}}/>
                     </div>
                   </div>
                   <br/>
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Password</label>
                     <div className="col-sm-10">
-                      <input type="password" ref="password" className="form-control" onChange={this.handleChange.bind(this)}  style={{backgroundColor: 'rgba(255,255,255,.5)', color: 'black'}}/>
+                      <input type="password" ref="password" className="form-control" onChange={this.handleChange.bind(this)}  style={{backgroundColor: 'rgba(255,255,255,.8)', color: 'black'}}/>
                     </div>
                   </div>
                   {this.state.passwordPrompt ? <p className="card-text-muted text-right">Must be over 8 characters</p> : <br/>}
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Confirm Password</label>
                     <div className="col-sm-10">
-                      <input type="password" ref="confirmPassword" className="form-control" style={{backgroundColor: 'rgba(255,255,255,.5)'}}/>
+                      <input type="password" ref="confirmPassword" className="form-control" style={{backgroundColor: 'rgba(255,255,255,.8)', color: 'black'}}/>
                     </div>
                   </div>
                   <br/>
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Email</label>
                     <div className="col-sm-10">
-                      <input type="text" ref="email" className="form-control" placeholder="example@example.com" style={{backgroundColor: 'rgba(255,255,255,.5)'}} />
+                      <input type="text" ref="email" className="form-control" placeholder="example@example.com" style={{backgroundColor: 'rgba(255,255,255,.8)', color: 'black'}} />
                     </div>
                   </div>
                   <br/>
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Confirm Email</label>
                     <div className="col-sm-10">
-                      <input type="text" ref="confirmEmail" className="form-control" placeholder="example@example.com" style={{backgroundColor: 'rgba(255,255,255,.5)'}}/>
+                      <input type="text" ref="confirmEmail" className="form-control" placeholder="example@example.com" style={{backgroundColor: 'rgba(255,255,255,.8)', color: 'black'}}/>
                     </div>
                   </div>
                   <br/>
@@ -149,11 +186,12 @@ mapSkills() {
             <div className="row">
               <div className="card card-outline-primary col-12" style={{backgroundColor: 'rgba(0,0,0,.5)', color: 'white'}}>
                 <div className="card-block">
-                  <h1 className="card-title" style={{ textShadow: '1px 1px 3px #F59B45'}}>Citizen Info</h1>
-                  <h6 className="card-subtitle mb-2 text-muted">Name, Branch, Primary Trade, and Secondary Trade</h6>
+                  <div className="row align-items-end" style={{ marginBottom: '0px'}}>
+                    <div className="h1 col-xs-12 col-lg-4 text-left" style={{marginBottom: '0px', textShadow: '1px 1px 3px #F59B45'}}>Citizen Info</div>
+                    <div className="h4 col-xs-12 col-lg-8 text-right d-none d-lg-block" style={{color: '#F59B45', textShadow: '1px 1px 3px black'}}>Name, Branch, Primary Trade, and Secondary Trade</div>
+                  </div>
                   <br/>
-                  <h4>Name</h4>
-                  <h6 className="text-muted">In-game name of character (<b>Not</b> your handle)</h6>
+                  <h6 className="" style={{color: 'white'}}>In-game name of character (<b style={{borderBottom: '2px solid #F59B45'}}>Not</b> your handle)</h6>
                   <div className="form-group row" style={{marginRight: '0px'}}>
                     <label className="col-sm-2 col-form-label text-right" >Full Name:</label>
                     <div className="col-sm-10">
@@ -164,6 +202,7 @@ mapSkills() {
                   <h4>Branch</h4>
                   <select className="custom-select" ref="branch">
                     <option value="Fleet">Fleet</option>
+                    <option disabled className="h5" style={{color: 'purple'}}>Label Test</option>
                     <option value="Marines">Marines</option>
                     <option value="PaIR">Public and Internal Relations</option>
                     <option value="LaS">Logistics and Science</option>

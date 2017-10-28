@@ -1,13 +1,14 @@
 import React from 'react';
 
 const Ranks = () => {
+  document.body.style.backgroundSize = 'auto'
   return (
-    <div className="container-fluid " style={{color: 'white' }}>
+    <div className="container-fluid " style={{color: 'white', backgroundColor: 'rgba(0,0,0,.5)', backgroundBlendMode: 'overlay'}}>
       <h3>T0-<span style={{color: '#F59B45', fontSize: '150%'}}>Director</span></h3>
       <p>Charged with providing leadership and direction to the Council, The Director is responsible for ensuring that the Council fulfils its responsibilities for the governance and success of the club. He also works to optimize the relationship between the Council, enlisted, wayward and other members, and to achieve the organization’s agreed goals. The Director is generally the spokesperson for the organization and should work to maintain key relationships within and outside of the organization.</p>
       <br/>
       <h3>T1-<span style={{color: '#F59B45', fontSize: '150%'}}>Council</span></h3>
-      <p>The Council members have ultimate responsibility for directing the actions and decisions as a whole of the organization, ensuring it is well run and delivering the outcomes for which it has been set up. Each Council member is responsible for a specific area of the Organization: Personnel management, Recruiting and Public Relations(<b>Saltycactus</b>), Logistics and Science(<b>Naz-Zackton</b>), Fleet composition and deployment(<b>Empty</b>), Military ground forces and training ( <b>Attira_Kell</b>).</p>
+      <p>The Council members have ultimate responsibility for directing the actions and decisions as a whole of the organization, ensuring it is well run and delivering the outcomes for which it has been set up. Each Council member is responsible for a specific area of the Organization: Personnel management, Recruiting and Public Relations(<b>Saltycactus</b>), Logistics and Science(<b>[REDACTED]</b>), Fleet composition and deployment(<b>Empty</b>), Military ground forces and training ( <b>Attira_Kell</b>).</p>
       <br/>
       <h3>T2-</h3>
       <h3 style={{color: '#F59B45'}}>Admiral</h3>
@@ -17,7 +18,7 @@ const Ranks = () => {
       <h3 style={{color: '#F59B45'}}>PaIR Minitser</h3>
       <p>Maintains rosters, requests, complaints, teamspeak server, discord server, Org to Org diplomacy and the organization home page. The most trusted members of the HR division. Answers only to Councillor Saltycactus.</p>
       <h3 style={{color: '#F59B45'}}>LaS Minister</h3>
-      <p>Maintains trade data databases, and maintains proper trade routes and will organize the large-scale trading and mining exhibitions. Answers to Councillor Naz-Zackton.</p>
+      <p>Maintains trade data databases, and maintains proper trade routes and will organize the large-scale trading and mining exhibitions. Answers to Councillor [REDACTED].</p>
       <br/>
       <h3>T3-<span style={{color: '#F59B45', fontSize: '150%'}}>Specialist</span></h3>
       <div>Highly trusted and specialized, these individuals are the epitome of their skill sets, whether it's dog-fighting or boarding parties these members are the top elite.</div>

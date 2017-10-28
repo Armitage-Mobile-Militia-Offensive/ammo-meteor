@@ -57,16 +57,13 @@ export default class About extends Component {
   }
   componentWillMount(){
     this.navSwitching()
-    document.body.style.background = `url(${"../assets/ScreenShot0010.jpg"})`
-    document.body.style.backgroundRepeat = 'repeat'
-    document.body.style.backgroundSize = 'auto'
-    document.body.style.backgroundPosition = 'center'
+    document.body.style.background = `url(${"../assets/ScreenShot0019.jpg"})`
+    document.body.style.backgroundRepeat = 'no-repeat'
    }
   componentWillUnmount(){
     document.body.style.backgroundImage = ''
     document.body.style.backgroundRepeat = ''
     document.body.style.backgroundSize = ''
-    document.body.style.backgroundPosition = ''
   }
   componentWillReceiveProps(){
     this.navSwitching()

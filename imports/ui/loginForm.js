@@ -28,15 +28,27 @@ export default class LoginForm extends Component {
   }
   onSubmit(e) {
     e.preventDefault()
-    let email = this.refs.email.value.toLowerCase().trim()
-    let password = this.refs.password.value.trim()
-    Meteor.loginWithPassword({ email }, password, (err) => {
-      if (err) {
-        this.setState({error: err.reason})
-      } else {
-        this.setState({error: ''})
-      }
-    })
+    if(this.refs.email.value.toLowerCase().trim().includes('@')) {
+      let email = this.refs.email.value.toLowerCase().trim()
+      let password = this.refs.password.value.trim()
+      Meteor.loginWithPassword({ email }, password, (err) => {
+        if (err) {
+          this.setState({error: err.reason})
+        } else {
+          this.setState({error: ''})
+        }
+      })
+    } else {
+      let username = this.refs.email.value.toLowerCase().trim()
+      let password = this.refs.password.value.trim()
+      Meteor.loginWithPassword({ username }, password, (err) => {
+        if (err) {
+          this.setState({error: err.reason})
+        } else {
+          this.setState({error: ''})
+        }
+      })
+    }
   }
   render(){
     return(
@@ -70,11 +82,11 @@ export default class LoginForm extends Component {
               </div>
               <br/>
               <div className="d-flex justify-content-center container-fluid row">
-                <button type="submit" className="btn btn-primary col-4">Submit</button>
+                <button type="submit" className="btn btn-outline-dark col-4 h4 " style={{color: '#F59B45', backgroundColor: 'black'}}>Submit</button>
               </div>
               <br/>
             </form>
-            <Link to="/signup" className="row justify-content-sm-center">Need a Account?</Link>
+            <Link to="/signup" className="row justify-content-sm-center" style={{color: '#F59B45'}}>Need a Account?</Link>
             <br/>
             <div className="card-footer" style={{backgroundColor: 'rgba(0,0,0,.5)', color: 'white'}}>
               <ClockUTC />
